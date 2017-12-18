@@ -1,8 +1,9 @@
-package DAO;
+package Service;
+
 import java.io.Serializable;
 import java.util.List;
 
-public interface BaseDAO<T>
+public interface BaseService<T>
 {
     T get(String sql);
     List<T> getBySQL(String sql);
