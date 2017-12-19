@@ -21,7 +21,8 @@
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
     <bean id="testAction" class="Controller.testAction">
-    <!--<property name="US">
-    <bean class="com.test.service.UserService"/>-->
+        <property name="CS">
+            <bean class="Service.CourseService"/>
+        </property>
     </bean>
 </beans>

@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="java.util.List"%>
+<%@page import="Model.Course"%>
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -459,7 +462,19 @@
 
 
             </div><!--/.row-->
-
+            <table>
+            <%
+            List<Course> courseList = (List<Course>)ActionContext.getContext().get("courseList");
+            for(Course c : courseList){
+            %>
+            <tr>
+                <td><%=c.getName()%></td>
+                <td><%=c.getContent()%></td>
+            </tr>
+            <%
+            }
+            %>
+            </table>
             <div class="panel-group m-bot20" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
