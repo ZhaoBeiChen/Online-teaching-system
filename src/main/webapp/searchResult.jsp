@@ -17,7 +17,7 @@
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="styl  esheet" />
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
@@ -51,19 +51,6 @@
                     <li>
                         <form class="navbar-form">
                             <input class="form-control" placeholder="Search" type="text">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    全部 <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">全部</a></li>
-                                    <li><a href="#">课程信息</a></li>
-                                    <li><a href="#">文章</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">课件</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                            <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator" value="搜索"></input>
                         </form>
                     </li>                    
                 </ul>
@@ -396,16 +383,16 @@
           <section class="wrapper">
 		  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
+					<h3 class="page-header"><i class="fa fa fa-bars"></i> 搜索结果</h3>
 					<ol class="breadcrumb">
-						<li><i class="fa fa-home"></i><a href="index.jsp">Home</a></li>
-						<li><i class="fa fa-bars"></i>Pages</li>
-						<li><i class="fa fa-square-o"></i>Pages</li>
+						<li><i class="fa fa-home"></i><a href="index.jsp">首页</a></li>
+						<li><i class="fa fa-bars"></i>搜索结果</li>
+						<%--<li><i class="fa fa-square-o"></i>Pages</li>--%>
 					</ol>
 				</div>
 			</div>
               <!-- page start-->
-              Page content goes here
+              这里的内容为搜索结果
               <!-- page end-->
           </section>
       </section>
