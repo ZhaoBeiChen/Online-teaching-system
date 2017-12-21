@@ -12,8 +12,11 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     @Override
     public T get(String sql)
     {
-        List<T> lst = HU.getSession().createQuery("from "+sql).list();
-        return lst.get(0);
+        List<T> lst = HU.getSession().createQuery(sql).list();
+        if(lst.size()>0){
+            return lst.get(0);
+        }
+        return null;
     }
 
     @Override
