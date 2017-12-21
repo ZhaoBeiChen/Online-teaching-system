@@ -11,18 +11,32 @@
     <constant name="struts.multipart.maxSize" value="2147483648"/>
 
     <package name="default" namespace="/" extends="struts-default">
-        <action name="" class="testAction" method="Test">
+        <action name="" class="CommonAction" method="Index">
             <result name="success">/index.jsp</result>
-            <result name="fail">/404.jsp</result>
-        </action>
-        <action name="testLogin" class="testAction" method="Test">
-            <result name="success">/index.jsp</result>
-            <result name="fail">/404.jsp</result>
+            <result name="fail">/login.jsp</result>
         </action>
     </package>
     <package name="common" namespace="/" extends="struts-default">
         <action name="Login" class="CommonAction" method="Login">
             <result name="success">/index.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
+    <package name="course" namespace="/" extends="struts-default">
+        <action name="Courses" class="CourseAction" method="Show">
+            <result name="success">/courses.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
+    <package name="offered" namespace="/" extends="struts-default">
+        <action name="Offered" class="OfferedAction" method="Show">
+            <result name="success">/offered.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
+    <package name="article" namespace="/" extends="struts-default">
+        <action name="Articles" class="ArticleAction" method="Show">
+            <result name="success">/articles.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
     </package>

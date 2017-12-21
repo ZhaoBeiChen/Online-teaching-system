@@ -5,8 +5,8 @@ import DAO.BaseDAOImpl;
 import Model.Teacher;
 import com.opensymphony.xwork2.ActionContext;
 
-public class TeacherService extends BaseServiceImpl<Teacher>
-{
+public class TeacherService extends BaseServiceImpl<Teacher> {
+
     public TeacherService(){
         BaseDAO<Teacher> dao = new BaseDAOImpl<Teacher>();
         super.setDao(dao);

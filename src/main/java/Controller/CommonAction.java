@@ -14,6 +14,14 @@ public class CommonAction extends ActionSupport
 
     private String username;
     private String password;
+
+    public String Index(){
+        if(ActionContext.getContext().getSession().get("username")!=null){
+            return "success";
+        }
+        return "fail";
+    }
+
     public String Login(){
         SS.init();
         TS.init();

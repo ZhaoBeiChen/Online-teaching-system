@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="java.util.List"%>
-<%@page import="Model.Course"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="View.OfferedView"%>
 <%@page import="com.opensymphony.xwork2.ActionContext"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>课程信息</title>
+    <title>开课信息</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -385,35 +386,51 @@
           <section class="wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="icon_genius"></i> 课程</h3>
+					<h3 class="page-header"><i class="icon_genius"></i> 开课</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="index.jsp">首页</a></li>
-						<li><i class="icon_genius"></i>课程信息</li>
+						<li><i class="icon_genius"></i>开课信息</li>
+					</ol>
 				</div>
 			</div>
-              <div class="row">
-                  <div class="col-lg-12">
-                      <section class="panel">
-                          <header class="panel-heading">
-                              课程信息
-                          </header>
-                          <div class="list-group">
+              <!-- page start-->
+                               <div class="row">
+                                    <div class="col-lg-12">
+                                        <section class="panel">
+                                            <header class="panel-heading no-border">
+                                                开课信息
+                                            </header>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>课程名称</th>
+                                                    <th>开课老师</th>
+                                                    <th>起始时间</th>
+                                                    <th>结束时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
                                       <%
-                                      List<Course> courseList = (List<Course>)ActionContext.getContext().get("courseList");
-                                      for(Course c : courseList){
+                                      List<OfferedView> offeredViews = (ArrayList<OfferedView>)ActionContext.getContext().getSession().get("offeredViews");
+                                      for(OfferedView o : offeredViews){
                                       %>
-                                            <a class="list-group-item " href="javascript:;">
-                                                <h4 class="list-group-item-heading"><%=c.getName()%></h4>
-                                                <p class="list-group-item-text"><%=c.getContent()%></p>
-                                            </a>
+                                      <tr>
+                                        <td><%=o.getId()%></td>
+                                        <td><%=o.getCourse().getName()%></td>
+                                        <td><%=o.getTeacher().getName()%></td>
+                                        <td><%=o.getDatestart()%></td>
+                                        <td><%=o.getDateend()%></td>
+                                      </tr>
                                       <%
                                       }
                                       %>
-
-                          </div>
-                      </section>
-                  </div>
-              </div>
+                                          </tbody>
+                                            </table>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
               <!-- page end-->
           </section>
       </section>

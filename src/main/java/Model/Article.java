@@ -22,6 +22,8 @@ public class Article
     private String grade;
     private Timestamp time;
 
+    private Teacher teacher;
+
     public int getId()
     {
         return id;
@@ -74,5 +76,13 @@ public class Article
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

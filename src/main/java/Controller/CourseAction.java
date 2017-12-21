@@ -10,10 +10,10 @@ import java.util.List;
  *
  * @author Zhudewen
  */
-public class testAction extends ActionSupport
+public class CourseAction extends ActionSupport
 {
     private CourseService CS;
-    public String Test()
+    public String Show()
     {
         CS.init();
         List<Course> courseList = CS.getBySQL("from Course");

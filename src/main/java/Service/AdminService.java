@@ -6,6 +6,7 @@ import Model.Admin;
 import com.opensymphony.xwork2.ActionContext;
 
 public class AdminService extends BaseServiceImpl<Admin> {
+
     public AdminService(){
         BaseDAO<Admin> dao = new BaseDAOImpl<Admin>();
         super.setDao(dao);
