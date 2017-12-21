@@ -15,7 +15,13 @@
             <result name="success">/index.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
-        <action name="Login" class="testAction" method="Test">
+        <action name="testLogin" class="testAction" method="Test">
+            <result name="success">/index.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
+    <package name="common" namespace="/" extends="struts-default">
+        <action name="Login" class="CommonAction" method="Login">
             <result name="success">/index.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>

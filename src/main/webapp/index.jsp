@@ -346,30 +346,30 @@
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_document_alt"></i>
-                        <span>Forms</span>
+                        <span>文章</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="form_component.jsp">Form Elements</a></li>
-                        <li><a class="" href="form_validation.jsp">Form Validation</a></li>
+                        <li><a class="" href="articles.jsp">查看文章</a></li>
+                        <li><a class="" href="articlesadd.jsp">添加文章</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_desktop"></i>
-                        <span>UI Fitures</span>
+                        <span>课件</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="general.jsp">Elements</a></li>
-                        <li><a class="" href="buttons.jsp">Buttons</a></li>
+                        <li><a class="" href="coursewares.jsp">查看课件</a></li>
+                        <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
                         <li><a class="" href="grids.jsp">Grids</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a class="" href="widgets.jsp">
+                    <a class="" href="courses.jsp">
                         <i class="icon_genius"></i>
-                        <span>Widgets</span>
+                        <span>课程信息</span>
                     </a>
                 </li>
                 <li>

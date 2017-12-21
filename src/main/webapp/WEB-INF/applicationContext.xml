@@ -25,4 +25,15 @@
             <bean class="Service.CourseService"/>
         </property>
     </bean>
+    <bean id="CommonAction" class="Controller.CommonAction">
+        <property name="AS">
+            <bean class="Service.AdminService"/>
+        </property>
+        <property name="TS">
+            <bean class="Service.TeacherService"/>
+        </property>
+        <property name="SS">
+            <bean class="Service.StudentService"/>
+        </property>
+    </bean>
 </beans>
