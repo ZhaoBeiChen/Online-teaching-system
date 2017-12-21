@@ -1,4 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="View.CoursewareView"%>
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -415,21 +419,25 @@
                                              <thead>
                                               <tr>
                                             <th>#</th>
-                                          <th>文章名称</th>
+                                            <th>名称</th>
+                                            <th>描述</th>
                                             <th>作者</th>
                                             <th>所属年级</th>
+                                            <th>时间</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <%
-                                             List<ArticleView> articleViews = (ArrayList<ArticleView>)ActionContext.getContext().getSession().get("articleViews");
-                                            for(ArticleView a : articleViews){
+                                             List<CoursewareView> coursewareViews = (ArrayList<CoursewareView>)ActionContext.getContext().getSession().get("coursewareViews");
+                                            for(CoursewareView c : coursewareViews){
                                             %>
                                             <tr>
-                                                 <td><%=a.getId()%></td>
-                                                 <td><%=a.getName()%></td>
-                                                 <td><%=a.getTeacher().getName()%></td>
-                                                 <td><%=a.getGrade().split("-")[0]%></td>
+                                                 <td><%=c.getId()%></td>
+                                                 <td><%=c.getName()%></td>
+                                                 <td><%=c.getContent()%></td>
+                                                 <td><%=c.getTeacher().getName()%></td>
+                                                 <td><%=c.getGrade().split("-")[0]%></td>
+                                                 <td><%=c.getTime()%></td>
                                             </tr>
                                           <%
                                            }

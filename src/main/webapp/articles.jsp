@@ -415,16 +415,6 @@
                                                           <header class="panel-heading no-border">
                                                               文章列表
                                                           </header>
-                                                          <table class="table table-bordered">
-                                                              <thead>
-                                                              <tr>
-                                                                  <th>#</th>
-                                                                  <th>文章名称</th>
-                                                                  <th>作者</th>
-                                                                  <th>所属年级</th>
-                                                              </tr>
-                                                              </thead>
-                                                              <tbody>
                                                     <%
                                                     List<ArticleView> articleViews = (ArrayList<ArticleView>)ActionContext.getContext().getSession().get("articleViews");
                                                     for(ArticleView a : articleViews){
@@ -433,13 +423,13 @@
                               <div class="panel-heading">
                                   <h4 class="panel-title">
                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                          <%=a.getId()%>.<%=a.getName()%>   ---   <%=a.getTeacher().getName()%>   ---   <%=a.getGrade().split("-")[0]%>   ---   <%=a.getTime()%>
+                                          <%=a.getId()%>   <%=a.getName()%>   ---   <%=a.getTeacher().getName()%>   ---   <%=a.getGrade().split("-")[0]%>   ---   <%=a.getTime()%>
                                       </a>
                                   </h4>
                               </div>
-                              <div id="collapseOne" class="panel-collapse collapse in">
+                              <div id="collapseOne" class="panel-collapse collapse">
                                   <div class="panel-body">
-                                        <%=a.getContent()%>
+                                        <pre><%=a.getContent()%></pre>
                                   </div>
                               </div>
                           </div>
@@ -447,8 +437,6 @@
                                                     <%
                                                     }
                                                     %>
-                                                        </tbody>
-                                                          </table>
                                                       </section>
                                                   </div>
                                               </div>

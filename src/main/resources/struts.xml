@@ -28,6 +28,12 @@
             <result name="fail">/404.jsp</result>
         </action>
     </package>
+    <package name="courseware" namespace="/" extends="struts-default">
+        <action name="Coursewares" class="CoursewareAction" method="Show">
+            <result name="success">/coursewares.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
     <package name="offered" namespace="/" extends="struts-default">
         <action name="Offered" class="OfferedAction" method="Show">
             <result name="success">/offered.jsp</result>
