@@ -40,9 +40,13 @@ public class HibernateUtil
     public boolean CloseSession()
     {
         try{
-            trans.commit();
-            session.clear();
-            session.close();
+            if (trans != null) {
+                trans.commit();
+            }
+            if (trans != null) {
+                session.clear();
+                session.close();
+            }
             return true;
         }
         catch(HibernateException e){
