@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+    <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
+    <bean id="CommonAction" class="Controller.CommonAction">
+        <property name="AS">
+            <bean class="Service.AdminService"/>
+        </property>
+        <property name="TS">
+            <bean class="Service.TeacherService"/>
+        </property>
+        <property name="SS">
+            <bean class="Service.StudentService"/>
+        </property>
+    </bean>
+
+    <bean id="CourseAction" class="Controller.CourseAction">
+        <property name="CS">
+            <bean class="Service.CourseService"/>
+        </property>
+    </bean>
+    <bean id="CoursewareAction" class="Controller.CoursewareAction">
+        <property name="CWS">
+            <bean class="Service.CoursewareService"/>
+        </property>
+    </bean>
+
+    <bean id="OfferedAction" class="Controller.OfferedAction">
+        <property name="OS">
+            <bean class="Service.OfferedService"/>
+        </property>
+    </bean>
+
+    <bean id="SelectedAction" class="Controller.SelectedAction">
+        <property name="SS">
+            <bean class="Service.SelectedService"/>
+        </property>
+    </bean>
+
+    <bean id="ArticleAction" class="Controller.ArticleAction">
+        <property name="AS">
+            <bean class="Service.ArticleService"/>
+        </property>
+        <property name="article">
+            <bean class="Model.Article"/>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://192.168.1.173:3306/ots?autoReconnect=true&amp;failOverReadOnly=false&amp;useSSL=false</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">123456</property>
+    <property name="verifyServerCertificate">false</property>
+
+    <mapping resource="Class.hbm.xml"/>
+
+    <mapping resource="Admin.hbm.xml"/>
+    <mapping resource="Teacher.hbm.xml"/>
+    <mapping resource="Student.hbm.xml"/>
+
+    <mapping resource="Article.hbm.xml"/>
+    <mapping resource="Course.hbm.xml"/>
+    <mapping resource="Courseware.hbm.xml"/>
+    <mapping resource="Message.hbm.xml"/>
+
+    <mapping resource="Offered.hbm.xml"/>
+    <mapping resource="Selected.hbm.xml"/>
+
+  </session-factory>
+</hibernate-configuration>
