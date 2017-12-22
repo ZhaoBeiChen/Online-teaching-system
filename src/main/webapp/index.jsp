@@ -356,7 +356,7 @@
                     <ul class="sub">
                         <li><a class="" href="/Articles">查看文章</a></li>
                         <%
-                            if(usertype.equals("teacher")||usertype.equals("admin"))
+                            if(usertype!=null&&(usertype.equals("teacher")||usertype.equals("admin")))
                             {
                         %>
                             <li><a class="" href="/ArticlesAdd">添加文章</a></li>
@@ -372,9 +372,9 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="coursewares.jsp">查看课件</a></li>
+                        <li><a class="" href="/Coursewares">查看课件</a></li>
                         <%
-                            if(usertype.equals("teacher")||usertype.equals("admin"))
+                            if(usertype!=null&&(usertype.equals("teacher")||usertype.equals("admin")))
                             {
                         %>
                             <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
