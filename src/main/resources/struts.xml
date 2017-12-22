@@ -40,9 +40,19 @@
             <result name="fail">/404.jsp</result>
         </action>
     </package>
+    <package name="selected" namespace="/" extends="struts-default">
+        <action name="Selected" class="SelectedAction" method="Show">
+            <result name="success">/selected.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
     <package name="article" namespace="/" extends="struts-default">
         <action name="Articles" class="ArticleAction" method="Show">
             <result name="success">/articles.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="ArticlesAdd" class="ArticleAction" method="Add">
+            <result name="success" type="redirectAction">Articles</result>
             <result name="fail">/404.jsp</result>
         </action>
     </package>

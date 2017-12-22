@@ -31,4 +31,8 @@ public class CoursewareService  extends BaseServiceImpl<Courseware> {
         }
         return coursewareViews;
     }
+
+    public boolean setAdd(Courseware courseware) {
+        return true;
+    }
 }

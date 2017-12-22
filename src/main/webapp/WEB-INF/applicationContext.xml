@@ -49,9 +49,18 @@
         </property>
     </bean>
 
+    <bean id="SelectedAction" class="Controller.SelectedAction">
+        <property name="SS">
+            <bean class="Service.SelectedService"/>
+        </property>
+    </bean>
+
     <bean id="ArticleAction" class="Controller.ArticleAction">
         <property name="AS">
             <bean class="Service.ArticleService"/>
+        </property>
+        <property name="article">
+            <bean class="Model.Article"/>
         </property>
     </bean>
 </beans>

@@ -13,7 +13,9 @@ public class TeacherService extends BaseServiceImpl<Teacher> {
     }
 
     public boolean Login(ActionContext context, String username, String password) {
-        if(get("from Student where name='"+username+"' and password='"+password+"'") != null){
+        Teacher teacher = get("from Teacher where name='"+username+"' and password='"+password+"'");
+        if(teacher != null){
+            context.getSession().put("user",teacher);
             context.getSession().put("username",username);
             context.getSession().put("usertype","teacher");
             return true;

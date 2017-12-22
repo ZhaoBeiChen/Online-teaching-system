@@ -405,7 +405,7 @@
 				</div>
 			</div>
               <!-- page start-->
-              Page content goes here
+
               <!-- page end-->
           </section>
       </section>
