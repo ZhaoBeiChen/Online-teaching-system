@@ -20,11 +20,6 @@
     p:password="${jdbc.password}" /-->
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
-    <bean id="testAction" class="Controller.testAction">
-        <property name="CS">
-            <bean class="Service.CourseService"/>
-        </property>
-    </bean>
     <bean id="CommonAction" class="Controller.CommonAction">
         <property name="AS">
             <bean class="Service.AdminService"/>
@@ -34,6 +29,24 @@
         </property>
         <property name="SS">
             <bean class="Service.StudentService"/>
+        </property>
+    </bean>
+
+    <bean id="CourseAction" class="Controller.CourseAction">
+        <property name="CS">
+            <bean class="Service.CourseService"/>
+        </property>
+    </bean>
+
+    <bean id="OfferedAction" class="Controller.OfferedAction">
+        <property name="OS">
+            <bean class="Service.OfferedService"/>
+        </property>
+    </bean>
+
+    <bean id="ArticleAction" class="Controller.ArticleAction">
+        <property name="AS">
+            <bean class="Service.ArticleService"/>
         </property>
     </bean>
 </beans>

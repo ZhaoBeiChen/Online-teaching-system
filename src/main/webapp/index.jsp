@@ -47,6 +47,10 @@
 </head>
 
 <body>
+<%
+    String username = (String)ActionContext.getContext().getSession().get("username");
+    String usertype = (String)ActionContext.getContext().getSession().get("usertype");
+%>
 <!-- container section start -->
 <section id="container" class="">
 
@@ -297,7 +301,7 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                        <span class="username">苦逼学生A</span>
+                        <span class="username"><%=username%></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -350,8 +354,15 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="articles.jsp">查看文章</a></li>
-                        <li><a class="" href="articlesadd.jsp">添加文章</a></li>
+                        <li><a class="" href="/Articles">查看文章</a></li>
+                        <%
+                            if(usertype.equals("teacher")||usertype.equals("admin"))
+                            {
+                        %>
+                            <li><a class="" href="/ArticlesAdd">添加文章</a></li>
+                        <%
+                            }
+                        %>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -362,20 +373,27 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" href="coursewares.jsp">查看课件</a></li>
-                        <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
-                        <li><a class="" href="grids.jsp">Grids</a></li>
+                        <%
+                            if(usertype.equals("teacher")||usertype.equals("admin"))
+                            {
+                        %>
+                            <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
+                            <li><a class="" href="grids.jsp">Grids</a></li>
+                        <%
+                            }
+                        %>
                     </ul>
                 </li>
                 <li>
-                    <a class="" href="courses.jsp">
+                    <a class="" href="/Courses">
                         <i class="icon_genius"></i>
                         <span>课程信息</span>
                     </a>
                 </li>
                 <li>
-                    <a class="" href="chart-chartjs.jsp">
+                    <a class="" href="/Offered"><!--chart-chartjs.jsp-->
                         <i class="icon_piechart"></i>
-                        <span>Charts</span>
+                        <span>开课信息</span>
 
                     </a>
 
@@ -462,19 +480,7 @@
 
 
             </div><!--/.row-->
-            <table>
-            <%
-            List<Course> courseList = (List<Course>)ActionContext.getContext().get("courseList");
-            for(Course c : courseList){
-            %>
-            <tr>
-                <td><%=c.getName()%></td>
-                <td><%=c.getContent()%></td>
-            </tr>
-            <%
-            }
-            %>
-            </table>
+
             <div class="panel-group m-bot20" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
