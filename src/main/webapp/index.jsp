@@ -409,8 +409,6 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" href="publishMessage.jsp">发布消息</a></li>
-                    </ul>
-                    <ul class="sub">
                         <li><a class="" href="changeMessage.jsp">修改消息</a></li>
                     </ul>
                 </li>
