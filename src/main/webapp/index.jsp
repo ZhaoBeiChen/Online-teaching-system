@@ -404,11 +404,14 @@
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_table"></i>
-                        <span>Tables</span>
+                        <span>消息管理</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="basic_table.jsp">Basic Table</a></li>
+                        <li><a class="" href="publishMessage.jsp">发布消息</a></li>
+                    </ul>
+                    <ul class="sub">
+                        <li><a class="" href="changeMessage.jsp">修改消息</a></li>
                     </ul>
                 </li>
 

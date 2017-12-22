@@ -13,7 +13,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Blank | Creative - Bootstrap 3 Responsive Admin Template</title>
+    <title>文章列表</title>
 
     <!-- Bootstrap CSS -->    
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -329,50 +329,49 @@
 				  <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
-                          <span>Forms</span>
+                          <span>文章</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="form_component.jsp">Form Elements</a></li>
-                          <li><a class="" href="form_validation.jsp">Form Validation</a></li>
+                          <li><a class="" href="articles.jsp">查看文章</a></li>
+                          <li><a class="" href="articlesadd.jsp">添加文章</a></li>
                       </ul>
                   </li>       
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_desktop"></i>
-                          <span>UI Fitures</span>
+                          <span>课件</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="general.jsp">Components</a></li>
-                          <li><a class="" href="buttons.jsp">Buttons</a></li>
-                          <li><a class="" href="grids.jsp">Grids</a></li>
+                          <li><a class="" href="coursewares.jsp">查看课件</a></li>
+                          <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
                       </ul>
                   </li>
                   <li>
-                      <a class="" href="widgets.jsp">
+                      <a class="" href="courses.jsp">
                           <i class="icon_genius"></i>
-                          <span>Widgets</span>
+                          <span>课程信息</span>
                       </a>
                   </li>
                   <li>                     
-                      <a class="" href="chart-chartjs.jsp">
+                      <a class="" href="offered.jsp">
                           <i class="icon_piechart"></i>
-                          <span>Charts</span>
+                          <span>开课信息</span>
                           
                       </a>
                                          
                   </li>
                              
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a href="selected.jsp" class="">
                           <i class="icon_table"></i>
-                          <span>Tables</span>
+                          <span>已选课程</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
-                      <ul class="sub">
-                          <li><a class="" href="basic_table.jsp">Basic Table</a></li>
-                      </ul>
+                      <%--<ul class="sub">--%>
+                          <%--<li><a class="" href="basic_table.jsp">Basic Table</a></li>--%>
+                      <%--</ul>--%>
                   </li>
                   
                   <li class="sub-menu ">
