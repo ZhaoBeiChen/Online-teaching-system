@@ -11,6 +11,6 @@
         <property name="grade"/>
         <property name="time"/>
 
-        <many-to-one name="teacher" class="Model.Teacher" column="authorid"  />
+        <many-to-one name="teacher" class="Model.Teacher" column="authorid" cascade="save-update,persist" />
     </class>
 </hibernate-mapping>

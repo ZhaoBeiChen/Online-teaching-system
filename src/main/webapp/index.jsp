@@ -359,7 +359,7 @@
                             if(usertype!=null&&(usertype.equals("teacher")||usertype.equals("admin")))
                             {
                         %>
-                            <li><a class="" href="/ArticlesAdd">添加文章</a></li>
+                            <li><a class="" href="/articlesadd.jsp">添加文章</a></li>
                         <%
                             }
                         %>
@@ -378,7 +378,6 @@
                             {
                         %>
                             <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
-                            <li><a class="" href="grids.jsp">Grids</a></li>
                         <%
                             }
                         %>
@@ -394,11 +393,14 @@
                     <a class="" href="/Offered"><!--chart-chartjs.jsp-->
                         <i class="icon_piechart"></i>
                         <span>开课信息</span>
-
                     </a>
-
                 </li>
-
+                <li>
+                    <a class="" href="/Selected"><!--chart-chartjs.jsp-->
+                        <i class="icon_table"></i>
+                        <span>已选课程</span>
+                    </a>
+                </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_table"></i>

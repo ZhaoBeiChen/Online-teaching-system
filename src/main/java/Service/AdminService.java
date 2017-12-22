@@ -12,7 +12,9 @@ public class AdminService extends BaseServiceImpl<Admin> {
         super.setDao(dao);
     }
     public boolean Login(ActionContext context, String username, String password) {
-        if(get("from Admin where name='"+username+"' and password='"+password+"'") != null){
+        Admin admin = get("from Admin where name='"+username+"' and password='"+password+"'");
+        if(admin != null){
+            context.getSession().put("user",admin);
             context.getSession().put("username",username);
             context.getSession().put("usertype","admin");
             return true;

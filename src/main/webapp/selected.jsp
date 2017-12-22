@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="View.ArticleView"%>
+<%@page import="View.SelectedView"%>
 <%@page import="com.opensymphony.xwork2.ActionContext"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -400,48 +400,52 @@
           <section class="wrapper">
 		  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa fa-bars"></i> 文章</h3>
+					<h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
 					<ol class="breadcrumb">
-						<li><i class="fa fa-home"></i><a href="index.jsp">首页</a></li>
-						<li><i class="fa fa-bars"></i>文章列表</li>
-						<!--<li><i class="fa fa-square-o"></i>Pages</li>-->
+						<li><i class="fa fa-home"></i><a href="index.jsp">Home</a></li>
+						<li><i class="fa fa-bars"></i>Pages</li>
+						<li><i class="fa fa-square-o"></i>Pages</li>
 					</ol>
 				</div>
 			</div>
               <!-- page start-->
-               <div class="row">
-                                               <div class="col-lg-12">
-                                                      <section class="panel">
-                                                          <header class="panel-heading no-border">
-                                                              文章列表
-                                                          </header>
-                                                    <%
-                                                    List<ArticleView> articleViews = (ArrayList<ArticleView>)ActionContext.getContext().getSession().get("articleViews");
-                                                    int i=0;
-                                                    for(ArticleView a : articleViews){
-                                                    %>
-                         <div class="panel panel-default">
-                              <div class="panel-heading">
-                                  <h4 class="panel-title">
-                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
-                                          <%=a.getId()%>   <%=a.getName()%>   ---   <%=a.getTeacher().getName()%>   ---   <%=a.getGrade().split("-")[0]%>   ---   <%=a.getTime()%>
-                                      </a>
-                                  </h4>
-                              </div>
-                              <div id="collapse<%=i%>" class="panel-collapse collapse">
-                                  <div class="panel-body">
-                                        <pre><%=a.getContent()%></pre>
-                                  </div>
-                              </div>
-
-                                                    <%
-                                                    i=i+1;
-                                                    }
-                                                    %>
-                                                      </section>
-                                                  </div>
-                                              </div>
-                                          </div>
+       <div class="row">
+                                    <div class="col-lg-12">
+                                        <section class="panel">
+                                            <header class="panel-heading no-border">
+                                                开课信息
+                                            </header>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>课程名称</th>
+                                                    <th>开课老师</th>
+                                                    <th>所选班级</th>
+                                                    <th>老师邮箱</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                      <%
+                                      List<SelectedView> selectedViews = (ArrayList<SelectedView>)ActionContext.getContext().getSession().get("selectedViews");
+                                      for(SelectedView s : selectedViews){
+                                      %>
+                                      <tr>
+                                        <td><%=s.getId()%></td>
+                                        <td><%=s.getOffered().getCourse().getName()%></td>
+                                        <td><%=s.getOffered().getTeacher().getName()%></td>
+                                        <td><%=s.getClass1().getName()%></td>
+                                        <td><%=s.getOffered().getTeacher().getEmail()%></td>
+                                      </tr>
+                                      <%
+                                      }
+                                      %>
+                                          </tbody>
+                                            </table>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
               <!-- page end-->
           </section>
       </section>
