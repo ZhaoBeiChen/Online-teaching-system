@@ -413,7 +413,7 @@
                                     <div class="col-lg-12">
                                         <section class="panel">
                                             <header class="panel-heading no-border">
-                                                开课信息
+                                                已选课程
                                             </header>
                                             <table class="table table-bordered">
                                                 <thead>

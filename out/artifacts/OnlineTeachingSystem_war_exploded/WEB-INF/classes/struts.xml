@@ -21,6 +21,10 @@
             <result name="success">/index.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
+        <action name="Search" class="CommonAction" method="Search">
+            <result name="success">/searchResult.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
     </package>
     <package name="course" namespace="/" extends="struts-default">
         <action name="Courses" class="CourseAction" method="Show">
@@ -31,6 +35,15 @@
     <package name="courseware" namespace="/" extends="struts-default">
         <action name="Coursewares" class="CoursewareAction" method="Show">
             <result name="success">/coursewares.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="CoursewaresAdd" class="CoursewareAction" method="Add">
+            <result name="success" type="redirectAction">Coursewares</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="CoursewaresDownload" class="CoursewareAction" method="Download">
+            <result name="success">
+            </result>
             <result name="fail">/404.jsp</result>
         </action>
     </package>
@@ -53,6 +66,12 @@
         </action>
         <action name="ArticlesAdd" class="ArticleAction" method="Add">
             <result name="success" type="redirectAction">Articles</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
+    <package name="message" namespace="/" extends="struts-default">
+        <action name="MessageAdd" class="MessageAction" method="add">
+            <result name="success">/index.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
     </package>

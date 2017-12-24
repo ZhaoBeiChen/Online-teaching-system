@@ -11,46 +11,71 @@
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
     <bean id="CommonAction" class="Controller.CommonAction">
-        <property name="AS">
+        <property name="adminService">
             <bean class="Service.AdminService"/>
         </property>
-        <property name="TS">
+        <property name="teacherService">
             <bean class="Service.TeacherService"/>
         </property>
-        <property name="SS">
+        <property name="studentService">
             <bean class="Service.StudentService"/>
+        </property>
+
+        <property name="articleService">
+            <bean class="Service.ArticleService"/>
+        </property>
+        <property name="coursewareService">
+            <bean class="Service.CoursewareService"/>
+        </property>
+        <property name="courseService">
+            <bean class="Service.CourseService"/>
+        </property>
+        <property name="offeredService">
+            <bean class="Service.OfferedService"/>
+        </property>
+        <property name="selectedService">
+            <bean class="Service.SelectedService"/>
         </property>
     </bean>
 
     <bean id="CourseAction" class="Controller.CourseAction">
-        <property name="CS">
+        <property name="courseService">
             <bean class="Service.CourseService"/>
         </property>
     </bean>
     <bean id="CoursewareAction" class="Controller.CoursewareAction">
-        <property name="CWS">
+        <property name="coursewareService">
             <bean class="Service.CoursewareService"/>
         </property>
     </bean>
 
     <bean id="OfferedAction" class="Controller.OfferedAction">
-        <property name="OS">
+        <property name="offeredService">
             <bean class="Service.OfferedService"/>
         </property>
     </bean>
 
     <bean id="SelectedAction" class="Controller.SelectedAction">
-        <property name="SS">
+        <property name="selectedService">
             <bean class="Service.SelectedService"/>
         </property>
     </bean>
 
     <bean id="ArticleAction" class="Controller.ArticleAction">
-        <property name="AS">
+        <property name="articleService">
             <bean class="Service.ArticleService"/>
         </property>
         <property name="article">
             <bean class="Model.Article"/>
+        </property>
+    </bean>
+
+    <bean id="MessageAction" class="Controller.MessageAction">
+        <property name="messageService">
+            <bean class="Service.MessageService" />
+        </property>
+        <property name="message">
+            <bean class="Model.Message" />
         </property>
     </bean>
 </beans>

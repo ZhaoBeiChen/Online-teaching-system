@@ -415,7 +415,7 @@
                                               <header class="panel-heading no-border">
                                                  课件列表
                                              </header>
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered table-advance">
                                              <thead>
                                               <tr>
                                             <th>#</th>
@@ -424,6 +424,7 @@
                                             <th>作者</th>
                                             <th>所属年级</th>
                                             <th>时间</th>
+                                            <th>操作</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -438,6 +439,13 @@
                                                  <td><%=c.getTeacher().getName()%></td>
                                                  <td><%=c.getGrade().split("-")[0]%></td>
                                                  <td><%=c.getTime()%></td>
+                                                 <td>
+                                                     <div class="btn-group">
+                                                        <a class="btn btn-primary" href="#">查看</i></a>
+                                                        <a class="btn btn-success" href="/CoursewaresDownload?id=<%=c.getId()%>">下载</i></a>
+                                                        <a class="btn btn-danger" href="#">删除</i></a>
+                                                    </div>
+                                                 </td>
                                             </tr>
                                           <%
                                            }

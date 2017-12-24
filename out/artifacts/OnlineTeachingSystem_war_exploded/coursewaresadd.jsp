@@ -409,27 +409,29 @@
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                             添加文章
+                             添加课件
                           </header>
                           <div class="panel-body">
                               <div class="form">
-                                  <form class="form-validate form-horizontal " id="register_form" action="ArticlesAdd" method="post" >
+                                  <form class="form-validate form-horizontal " id="register_form" action="CoursewaresAdd" method="post"  enctype="multipart/form-data">
                                       <div class="form-group ">
                                           <label for="name" class="control-label col-lg-2">课件标题 <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class=" form-control" id="name" name="article.name" type="text" />
+                                              <input class=" form-control" id="name" name="name" type="text" />
                                           </div>
                                       </div>
                                       <div class="form-group ">
                                           <label for="content" class="control-label col-lg-2">课件简介 <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <textarea class="form-control " id="content" name="article.content" type="text" style="resize:none;height:260px;" ></textarea>
+                                              <textarea class="form-control " id="content" name="content" type="text" style="resize:none;height:130px;" ></textarea>
                                           </div>
                                       </div>
-                                    <div class="form-group">
-                                       <label for="courseware">File input</label>
-                                       <input type="file" id="courseware">
-                                       <p class="help-block">Example block-level help text here.</p>
+                                    <div class="form-group ">
+                                        <label for="file" class="control-label col-lg-2">选择课件 <span class="required">*</span></label>
+                                       <div class="col-lg-10">
+                                            <input type="file" id="file" name="file">
+                                            <p class="help-block">Example block-level help text here.</p>
+                                       </div>
                                    </div>
 
                                       <div class="form-group">

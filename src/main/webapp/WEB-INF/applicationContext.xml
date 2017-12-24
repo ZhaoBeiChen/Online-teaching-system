@@ -69,4 +69,13 @@
             <bean class="Model.Article"/>
         </property>
     </bean>
+
+    <bean id="MessageAction" class="Controller.MessageAction">
+        <property name="messageService">
+            <bean class="Service.MessageService" />
+        </property>
+        <property name="message">
+            <bean class="Model.Message" />
+        </property>
+    </bean>
 </beans>
