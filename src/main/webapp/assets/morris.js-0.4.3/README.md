@@ -136,7 +136,7 @@ Once you're all set up, you can compile, minify and run the tests using `grunt`.
 ### 0.2.5 - 15th March 2012
 
 - Raw millisecond timestamp support (with `dateFormat` option)
-- YYYY-MM-DD HH:MM[:SS[.SSS]] date support
+- YYYY-MM-DD HH:MM[:selectedService[.SSS]] date support
 - Decimal number labels
 
 ### 0.2.4 - 8th March 2012
@@ -178,7 +178,7 @@ modification, are permitted provided that the following conditions are met:
    this list of conditions and the following disclaimer in the documentation
    and/or other materials provided with the distribution.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "articleService IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR

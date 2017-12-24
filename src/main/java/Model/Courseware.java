@@ -15,12 +15,13 @@ public class Courseware
 {
     private int id;
     private String name;
-    private String author;
     private String content;
     private String path;
     private int authorid;
     private String grade;
     private Timestamp time;
+
+    private Teacher teacher;
 
     public int getId()
     {
@@ -40,16 +41,6 @@ public class Courseware
     public void setName(String name)
     {
         this.name = name;
-    }
-
-    public String getAuthor()
-    {
-        return author;
-    }
-
-    public void setAuthor(String author)
-    {
-        this.author = author;
     }
 
     public String getContent()
@@ -92,5 +83,13 @@ public class Courseware
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

@@ -19,7 +19,10 @@ public class ArticleService  extends BaseServiceImpl<Article>{
         super.setDao(dao);
     }
 
-    public List<ArticleView> getListViews() {
+    public List<ArticleView> getListViews(String keyword) {
+        if(keyword==null){
+            keyword="";
+        }
         List<Article> articleList = getBySQL("from Article");
         List<ArticleView> articleViews = new ArrayList<ArticleView>();
         for(Article a : articleList){
@@ -31,7 +34,12 @@ public class ArticleService  extends BaseServiceImpl<Article>{
             view.setTeacher(teacher);
             view.setGrade(a.getGrade());
             view.setTime(a.getTime());
-            articleViews.add(view);
+            if(view.getName().contains(keyword) ||
+                    view.getContent().contains(keyword) ||
+                    view.getTeacher().getName().contains(keyword) ||
+                    view.getTeacher().getEmail().contains(keyword)){
+                articleViews.add(view);
+            }
         }
         return articleViews;
     }

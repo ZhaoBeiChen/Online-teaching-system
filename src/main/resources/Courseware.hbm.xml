@@ -8,8 +8,10 @@
         <property name="name"/>
         <property name="content"/>
         <property name="path"/>
-        <property name="authorid" />
+        <property name="authorid" insert="false" update="false"/>
         <property name="grade"/>
         <property name="time"/>
+
+        <many-to-one name="teacher" class="Model.Teacher" column="authorid" cascade="save-update,persist" />
     </class>
 </hibernate-mapping>

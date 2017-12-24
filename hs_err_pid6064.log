@@ -8,7 +8,7 @@
 #   Reduce memory load on the system
 #   Increase physical memory or swap space
 #   Check if swap backing store is full
-#   Use 64 bit Java on a 64 bit OS
+#   Use 64 bit Java on a 64 bit offeredService
 #   Decrease Java heap size (-Xmx/-Xms)
 #   Decrease number of Java threads
 #   Decrease Java thread stack sizes (-Xss)
@@ -295,7 +295,7 @@ Dynamic libraries:
 0x0000000073310000 - 0x000000007331d000 	C:\Program Files\Java\jdk1.8.0_144\jre\bin\management.dll
 
 VM Arguments:
-jvm_args: -Dmaven.multiModuleProjectDirectory=D:\Èí¼þÏµÍ³µÄÉè¼ÆÓëÊµÏÖ\ÏîÄ¿ÖØÐ´\Online-teaching-system -Dmaven.home=D:\IDEA\IntelliJ IDEA Community Edition 2017.2.4\plugins\maven\lib\maven3 -Didea.modules.paths.file=C:\Users\Miseria\.IdeaIC2017.2\system\Maven\idea-projects-state-4c71809e.properties -Dclassworlds.conf=C:\Users\Miseria\AppData\Local\Temp\idea-5776-mvn.conf -javaagent:D:\IDEA\IntelliJ IDEA Community Edition 2017.2.4\lib\idea_rt.jar=65036:D:\IDEA\IntelliJ IDEA Community Edition 2017.2.4\bin -Dfile.encoding=UTF-8 
+jvm_args: -Dmaven.multiModuleProjectDirectory=D:\ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½\ï¿½ï¿½Ä¿ï¿½ï¿½Ð´\Online-teaching-system -Dmaven.home=D:\IDEA\IntelliJ IDEA Community Edition 2017.2.4\plugins\maven\lib\maven3 -Didea.modules.paths.file=C:\Users\Miseria\.IdeaIC2017.2\system\Maven\idea-projects-state-4c71809e.properties -Dclassworlds.conf=C:\Users\Miseria\AppData\Local\Temp\idea-5776-mvn.conf -javaagent:D:\IDEA\IntelliJ IDEA Community Edition 2017.2.4\lib\idea_rt.jar=65036:D:\IDEA\IntelliJ IDEA Community Edition 2017.2.4\bin -Dfile.encoding=UTF-8 
 java_command: org.codehaus.classworlds.Launcher -Didea.version=2017.2.6 tomcat7:run
 java_class_path (initial): D:\IDEA\IntelliJ IDEA Community Edition 2017.2.4\plugins\maven\lib\maven3\boot\plexus-classworlds-2.5.2.jar;D:\IDEA\IntelliJ IDEA Community Edition 2017.2.4\lib\idea_rt.jar
 Launcher Type: SUN_STANDARD
@@ -305,14 +305,14 @@ JAVA_HOME=C:\Program Files\Java\jdk1.8.0_144
 CLASSPATH=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;
 PATH=G:\app\user\product\11.2.0\dbhome_1\bin;C:\Program Files\Broadcom\Broadcom 802.11 Network Adapter\Driver;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Lenovo\Bluetooth Software\;C:\Program Files\Lenovo\Bluetooth Software\syswow64;C:\Program Files (x86)\Lenovo\Lenovo Home\;D:\Git\cmd;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Python27\;D:\emacs\clisp\clisp-2.49;D:\Qt\4.8.7\bin;D:\Qt\4.8.7\bin\commonqt;D:\mysql\bin;%JAVA_HOME%\bin;C:\CocosCreator\resources\cocos2d-x\templates;C:\CocosCreator\resources\cocos2d-x\tools\cocos2d-console\bin
 USERNAME=Miseria
-OS=Windows_NT
+offeredService=Windows_NT
 PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 69 Stepping 1, GenuineIntel
 
 
 
 ---------------  S Y S T E M  ---------------
 
-OS: Windows 8.1 , 64 bit Build 9600 (6.3.9600.17415)
+offeredService: Windows 8.1 , 64 bit Build 9600 (6.3.9600.17415)
 
 CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 69 stepping 1, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2
 

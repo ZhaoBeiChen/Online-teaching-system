@@ -1,34 +1,28 @@
 package Controller;
 
-import Model.Course;
-import Model.Offered;
-import Model.Teacher;
-import Service.CourseService;
 import Service.OfferedService;
-import Service.TeacherService;
 import View.OfferedView;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OfferedAction extends ActionSupport {
-    private OfferedService OS;
+    private OfferedService offeredService;
 
     public String Show(){
-        OS.init();
-        List<OfferedView> offeredViews = OS.getListViews();
+        offeredService.init();
+        List<OfferedView> offeredViews = offeredService.getListViews("");
         ActionContext.getContext().getSession().put("offeredViews",offeredViews);
-        OS.clear();
+        offeredService.clear();
         return "success";
     }
 
-    public OfferedService getOS() {
-        return OS;
+    public OfferedService getOfferedService() {
+        return offeredService;
     }
 
-    public void setOS(OfferedService OS) {
-        this.OS = OS;
+    public void setOfferedService(OfferedService offeredService) {
+        this.offeredService = offeredService;
     }
 }

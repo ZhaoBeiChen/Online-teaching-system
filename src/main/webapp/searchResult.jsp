@@ -1,4 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="View.SearchView"%>
+<%@page import="View.ArticleView"%>
+<%@page import="View.CoursewareView"%>
+<%@page import="View.OfferedView"%>
+<%@page import="View.SelectedView"%>
+<%@page import="Model.Course"%>
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -392,11 +401,214 @@
 				</div>
 			</div>
               <!-- page start-->
-              这里的内容为搜索结果
+              <%
+                SearchView searchView = (SearchView)ActionContext.getContext().getSession().get("searchView");
+                String condition = searchView.getCondition();
+
+              %>
+
+              <!--  文章   -->
+<%
+if(condition.equals("all") || condition.equals("article")){
+ %>
+              <div class="row">
+                           <div class="col-lg-12">
+                            <section class="panel">
+                              <header class="panel-heading no-border">
+                                     文章列表
+                                       </header>
+                                 <%
+                             List<ArticleView> articleViews = searchView.getArticleViews();
+                                                                 int i=0;
+                                                                 for(ArticleView a : articleViews){
+                                                                 %>
+                                      <div class="panel panel-default">
+                                           <div class="panel-heading">
+                                               <h4 class="panel-title">
+                                                   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
+                                                       <%=a.getId()%>   <%=a.getName()%>   ---   <%=a.getTeacher().getName()%>   ---   <%=a.getGrade().split("-")[0]%>   ---   <%=a.getTime()%>
+                                                   </a>
+                                               </h4>
+                                           </div>
+                                           <div id="collapse<%=i%>" class="panel-collapse collapse">
+                                               <div class="panel-body">
+                                                     <pre><%=a.getContent()%></pre>
+                                               </div>
+                                           </div>
+
+                                                                 <%
+                                                                 i=i+1;
+                                                                 }
+                                                                 %>
+                                       </section></div></div>
+                                    <%
+                                    }
+                                    %>
+       <!--  课件 -->
+ <%
+ if(condition.equals("all") || condition.equals("courseware")){
+  %>
+   <div class="row">
+                              <div class="col-lg-12">
+                                         <section class="panel">
+                                              <header class="panel-heading no-border">
+                                                 课件列表
+                                             </header>
+                                            <table class="table table-bordered table-advance">
+                                             <thead>
+                                              <tr>
+                                            <th>#</th>
+                                            <th>名称</th>
+                                            <th>描述</th>
+                                            <th>作者</th>
+                                            <th>所属年级</th>
+                                            <th>时间</th>
+                                            <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <%
+                                             List<CoursewareView> coursewareViews = searchView.getCoursewareViews();
+                                            for(CoursewareView c : coursewareViews){
+                                            %>
+                                            <tr>
+                                                 <td><%=c.getId()%></td>
+                                                 <td><%=c.getName()%></td>
+                                                 <td><%=c.getContent()%></td>
+                                                 <td><%=c.getTeacher().getName()%></td>
+                                                 <td><%=c.getGrade().split("-")[0]%></td>
+                                                 <td><%=c.getTime()%></td>
+                                                 <td>
+                                                     <div class="btn-group">
+                                                        <a class="btn btn-primary" href="#">查看</i></a>
+                                                        <a class="btn btn-success" href="/CoursewaresDownload?id=<%=c.getId()%>">下载</i></a>
+                                                        <a class="btn btn-danger" href="#">删除</i></a>
+                                                    </div>
+                                                 </td>
+                                            </tr>
+                                          <%
+                                           }
+                                           %>
+                                      </tbody>
+                                  </table>
+                             </section></div></div>
+                            <%
+                            }
+                            %>
+
+      <!--  课程信息 -->
+       <%
+       if(condition.equals("all") || condition.equals("course")){
+        %>
+               <div class="row">
+                   <div class="col-lg-12">
+                       <section class="panel">
+                           <header class="panel-heading">
+                               课程信息
+                           </header>
+                           <div class="list-group">
+                                       <%
+                                       List<Course> courseList = searchView.getCourses();
+                                       for(Course c : courseList){
+                                       %>
+                                             <a class="list-group-item " href="javascript:;">
+                                                 <h4 class="list-group-item-heading"><%=c.getName()%></h4>
+                                                 <p class="list-group-item-text"><%=c.getContent()%></p>
+                                             </a>
+                                       <%
+                                       }
+                                       %>
+
+                           </div>
+                       </section>
+                   </div>
+               </div>
+
+   <!--  开课信息  -->
+<div class="row">
+                                    <div class="col-lg-12">
+                                        <section class="panel">
+                                            <header class="panel-heading no-border">
+                                                开课信息
+                                            </header>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>课程名称</th>
+                                                    <th>开课老师</th>
+                                                    <th>起始时间</th>
+                                                    <th>结束时间</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                      <%
+                                      List<OfferedView> offeredViews = searchView.getOfferedViews();
+                                      for(OfferedView o : offeredViews){
+                                      %>
+                                      <tr>
+                                        <td><%=o.getId()%></td>
+                                        <td><%=o.getCourse().getName()%></td>
+                                        <td><%=o.getTeacher().getName()%></td>
+                                        <td><%=o.getDatestart()%></td>
+                                        <td><%=o.getDateend()%></td>
+                                      </tr>
+                                      <%
+                                      }
+                                      %>
+                                          </tbody>
+                                            </table>
+                                        </section>
+                                    </div>
+                                </div>
+      <!--  已选课程  -->
+
+                   <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <section class="panel">
+                                                            <header class="panel-heading no-border">
+                                                                已选课程
+                                                            </header>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>课程名称</th>
+                                                                    <th>开课老师</th>
+                                                                    <th>所选班级</th>
+                                                                    <th>老师邮箱</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                      <%
+                                                      List<SelectedView> selectedViews = searchView.getSelectedViews();
+                                                      for(SelectedView s : selectedViews){
+                                                      %>
+                                                      <tr>
+                                                        <td><%=s.getId()%></td>
+                                                        <td><%=s.getOffered().getCourse().getName()%></td>
+                                                        <td><%=s.getOffered().getTeacher().getName()%></td>
+                                                        <td><%=s.getClass1().getName()%></td>
+                                                        <td><%=s.getOffered().getTeacher().getEmail()%></td>
+                                                      </tr>
+                                                      <%
+                                                      }
+                                                      %>
+                                                          </tbody>
+                                                            </table>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                        <%
+                                        }
+                                        %>
               <!-- page end-->
           </section>
       </section>
       <!--main content end-->
+
+
+
   </section>
   <!-- container section end -->
     <!-- javascripts -->

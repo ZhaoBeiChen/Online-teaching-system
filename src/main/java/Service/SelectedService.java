@@ -4,7 +4,6 @@ import DAO.BaseDAO;
 import DAO.BaseDAOImpl;
 import Model.*;
 import Model.Class;
-import View.OfferedView;
 import View.SelectedView;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -17,10 +16,13 @@ public class SelectedService  extends BaseServiceImpl<Selected>{
         super.setDao(dao);
     }
 
-    public List<SelectedView> getListViews() {
+    public List<SelectedView> getListViews(String keyword) {
         List<Selected> selectedList = null;
         String usertype = (String) ActionContext.getContext().getSession().get("usertype");
-        if(usertype.equals("student")){
+        if(usertype==null){
+            return null;
+        }
+        else if(usertype.equals("student")){
             Student student = (Student) ActionContext.getContext().getSession().get("user");
             selectedList = getBySQL("from Selected where classid="+student.getClassid());
         }
@@ -37,7 +39,13 @@ public class SelectedService  extends BaseServiceImpl<Selected>{
             view.setId(s.getId());
             view.setClass1(class1);
             view.setOffered(offered);
-            selectedViews.add(view);
+            if(view.getClass1().getName().contains(keyword) ||
+                    view.getOffered().getCourse().getName().contains(keyword) ||
+                    view.getOffered().getCourse().getContent().contains(keyword) ||
+                    view.getOffered().getTeacher().getName().contains(keyword) ||
+                    view.getOffered().getTeacher().getEmail().contains(keyword)){
+                selectedViews.add(view);
+            }
         }
         return selectedViews;
     }

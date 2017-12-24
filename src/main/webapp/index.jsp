@@ -68,22 +68,15 @@
             <!--  search form start -->
             <ul class="nav top-menu">
                 <li>
-                    <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                全部 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">全部</a></li>
-                                <li><a href="#">课程信息</a></li>
-                                <li><a href="#">文章</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">课件</a></li>
-                            </ul>
-                        </div><!-- /btn-group -->
+                    <form class="navbar-form" action="Search" method="post">
+                        <input name="keyword" class="form-control" placeholder="Search" type="text">
+                        <select name="condition"  class="btn btn-primary selectpicker">
+                            <option value="all">全部</option>
+                            <option value="article">文章</option>
+                            <option value="courseware">课件</option>
+                            <option value="course">课程相关</option>
+                        </select>
                         <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator" value="搜索"></input>
-                        <a class="btn btn-primary" href="searchResult.jsp" title="Bootstrap 3 themes generator">Test</a>
                     </form>
                 </li>
             </ul>

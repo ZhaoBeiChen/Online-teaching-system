@@ -12,21 +12,21 @@ import java.util.List;
  */
 public class CourseAction extends ActionSupport
 {
-    private CourseService CS;
+    private CourseService courseService;
     public String Show()
     {
-        CS.init();
-        List<Course> courseList = CS.getBySQL("from Course");
+        courseService.init();
+        List<Course> courseList = courseService.getListViews("");
         ActionContext.getContext().put("courseList",courseList);
-        CS.clear();
+        courseService.clear();
         return "success";
     }
 
-    public CourseService getCS() {
-        return CS;
+    public CourseService getCourseService() {
+        return courseService;
     }
 
-    public void setCS(CourseService CS) {
-        this.CS = CS;
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
     }
 }

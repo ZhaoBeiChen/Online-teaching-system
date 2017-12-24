@@ -6,7 +6,6 @@ import Model.Course;
 import Model.Offered;
 import Model.Teacher;
 import View.OfferedView;
-import com.opensymphony.xwork2.ActionContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,10 @@ public class OfferedService extends BaseServiceImpl<Offered>{
         super.setDao(dao);
     }
 
-    public List<OfferedView> getListViews() {
+    public List<OfferedView> getListViews(String keyword) {
+        if(keyword==null){
+            keyword="";
+        }
         List<Offered> offeredList = getBySQL("from Offered");
         List<OfferedView> offeredViews = new ArrayList<OfferedView>();
         for(Offered o : offeredList){
@@ -29,7 +31,12 @@ public class OfferedService extends BaseServiceImpl<Offered>{
             view.setDateend(o.getDateend());
             view.setCourse(course);
             view.setTeacher(teacher);
-            offeredViews.add(view);
+            if(view.getCourse().getName().contains(keyword) ||
+                    view.getCourse().getContent().contains(keyword) ||
+                    view.getTeacher().getName().contains(keyword) ||
+                    view.getTeacher().getEmail().contains(keyword)){
+                offeredViews.add(view);
+            }
         }
         return offeredViews;
     }

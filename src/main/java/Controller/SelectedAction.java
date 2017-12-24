@@ -8,20 +8,20 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 
 public class SelectedAction extends ActionSupport{
-    private SelectedService SS;
+    private SelectedService selectedService;
     public String Show(){
-        SS.init();
-        List<SelectedView> selectedViews = SS.getListViews();
+        selectedService.init();
+        List<SelectedView> selectedViews = selectedService.getListViews("");
         ActionContext.getContext().getSession().put("selectedViews",selectedViews);
-        SS.clear();
+        selectedService.clear();
         return "success";
     }
 
-    public SelectedService getSS() {
-        return SS;
+    public SelectedService getSelectedService() {
+        return selectedService;
     }
 
-    public void setSS(SelectedService SS) {
-        this.SS = SS;
+    public void setSelectedService(SelectedService selectedService) {
+        this.selectedService = selectedService;
     }
 }

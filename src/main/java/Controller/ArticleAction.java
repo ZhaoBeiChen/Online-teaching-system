@@ -9,27 +9,27 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 
 public class ArticleAction extends ActionSupport{
-    private ArticleService AS;
+    private ArticleService articleService;
     private Article article;
     public String Show(){
-        AS.init();
-        List<ArticleView> articleViews = AS.getListViews();
+        articleService.init();
+        List<ArticleView> articleViews = articleService.getListViews("");
         ActionContext.getContext().getSession().put("articleViews",articleViews);
-        AS.clear();
+        articleService.clear();
         return "success";
     }
     public String Add(){
-        AS.init();
-        AS.setAdd(article);
-        AS.clear();
+        articleService.init();
+        articleService.setAdd(article);
+        articleService.clear();
         return "success";
     }
-    public ArticleService getAS() {
-        return AS;
+    public ArticleService getArticleService() {
+        return articleService;
     }
 
-    public void setAS(ArticleService AS) {
-        this.AS = AS;
+    public void setArticleService(ArticleService articleService) {
+        this.articleService = articleService;
     }
 
     public Article getArticle() {

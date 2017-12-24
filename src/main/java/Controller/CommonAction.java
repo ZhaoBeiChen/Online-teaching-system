@@ -1,16 +1,24 @@
 package Controller;
 
-import Service.AdminService;
-import Service.StudentService;
-import Service.TeacherService;
+import Service.*;
+import View.SearchView;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CommonAction extends ActionSupport
 {
-    private AdminService AS;
-    private TeacherService TS;
-    private StudentService SS;
+    private AdminService adminService;
+    private TeacherService teacherService;
+    private StudentService studentService;
+
+    private ArticleService articleService;
+    private CoursewareService coursewareService;
+    private CourseService courseService;
+    private OfferedService offeredService;
+    private SelectedService selectedService;
+
+    private String keyword;
+    private String condition;
 
     private String username;
     private String password;
@@ -26,42 +34,151 @@ public class CommonAction extends ActionSupport
     }
 
     public String Login(){
-        SS.init();
-        TS.init();
-        AS.init();
+        studentService.init();
+        teacherService.init();
+        adminService.init();
         ActionContext context = ActionContext.getContext();
-        if(SS.Login(context,username,password)){ }
-        else if(TS.Login(context,username,password)){ }
-        else if(AS.Login(context,username,password)){ }
+        if(studentService.Login(context,username,password)){ }
+        else if(teacherService.Login(context,username,password)){ }
+        else if(adminService.Login(context,username,password)){ }
         else{ return "fail"; }
-        SS.clear();
-        TS.clear();
-        AS.clear();
+        studentService.clear();
+        teacherService.clear();
+        adminService.clear();
         return "success";
     }
-
-    public AdminService getAS() {
-        return AS;
+    public String Search(){
+        SearchView searchView;
+        if(condition==null||condition.equals("all")){
+            searchView = new SearchView();
+            searchView.setCondition("all");
+            articleService.init();
+            searchView.setArticleViews(articleService.getListViews(keyword));
+            articleService.clear();
+            coursewareService.init();
+            searchView.setCoursewareViews(coursewareService.getListViews(keyword));
+            coursewareService.clear();
+            courseService.init();
+            searchView.setCourses(courseService.getListViews(keyword));
+            courseService.clear();
+            offeredService.init();
+            searchView.setOfferedViews(offeredService.getListViews(keyword));
+            offeredService.clear();
+            selectedService.init();
+            searchView.setSelectedViews(selectedService.getListViews(keyword));
+            selectedService.clear();
+        }
+        else if(condition.equals("article")){
+            searchView = new SearchView();
+            searchView.setCondition("article");
+            articleService.init();
+            searchView.setArticleViews(articleService.getListViews(keyword));
+            articleService.clear();
+        }
+        else if(condition.equals("courseware")){
+            searchView = new SearchView();
+            searchView.setCondition("courseware");
+            coursewareService.init();
+            searchView.setCoursewareViews(coursewareService.getListViews(keyword));
+            coursewareService.clear();
+        }
+        else if(condition.equals("course")){
+            searchView = new SearchView();
+            searchView.setCondition("course");
+            courseService.init();
+            searchView.setCourses(courseService.getListViews(keyword));
+            courseService.clear();
+            offeredService.init();
+            searchView.setOfferedViews(offeredService.getListViews(keyword));
+            offeredService.clear();
+            selectedService.init();
+            searchView.setSelectedViews(selectedService.getListViews(keyword));
+            selectedService.clear();
+        }
+        else{
+            return "fail";
+        }
+        ActionContext.getContext().getSession().put("searchView",searchView);
+        return "success";
+    }
+    public AdminService getAdminService() {
+        return adminService;
     }
 
-    public void setAS(AdminService AS) {
-        this.AS = AS;
+    public void setAdminService(AdminService adminService) {
+        this.adminService = adminService;
     }
 
-    public TeacherService getTS() {
-        return TS;
+    public TeacherService getTeacherService() {
+        return teacherService;
     }
 
-    public void setTS(TeacherService TS) {
-        this.TS = TS;
+    public void setTeacherService(TeacherService teacherService) {
+        this.teacherService = teacherService;
     }
 
-    public StudentService getSS() {
-        return SS;
+    public StudentService getStudentService() {
+        return studentService;
     }
 
-    public void setSS(StudentService SS) {
-        this.SS = SS;
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    public ArticleService getArticleService() {
+        return articleService;
+    }
+
+    public void setArticleService(ArticleService articleService) {
+        this.articleService = articleService;
+    }
+
+    public CoursewareService getCoursewareService() {
+        return coursewareService;
+    }
+
+    public void setCoursewareService(CoursewareService coursewareService) {
+        this.coursewareService = coursewareService;
+    }
+
+    public CourseService getCourseService() {
+        return courseService;
+    }
+
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
+    }
+
+    public OfferedService getOfferedService() {
+        return offeredService;
+    }
+
+    public void setOfferedService(OfferedService offeredService) {
+        this.offeredService = offeredService;
+    }
+
+    public SelectedService getSelectedService() {
+        return selectedService;
+    }
+
+    public void setSelectedService(SelectedService selectedService) {
+        this.selectedService = selectedService;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
     public String getUsername() {
