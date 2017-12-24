@@ -300,7 +300,7 @@
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
                         <li class="eborder-top">
-                            <a href="#"><i class="icon_profile"></i> 我的资料</a>
+                            <a href="personalInformation.jsp"><i class="icon_profile"></i> 我的资料</a>
                         </li>
                         <%--<li>--%>
                             <%--<a href="#"><i class="icon_mail_alt"></i> My Inbox</a>--%>
@@ -397,11 +397,12 @@
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_table"></i>
-                        <span>Tables</span>
+                        <span>消息管理</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="basic_table.jsp">Basic Table</a></li>
+                        <li><a class="" href="publishMessage.jsp">发布消息</a></li>
+                        <li><a class="" href="changeMessage.jsp">修改消息</a></li>
                     </ul>
                 </li>
 
