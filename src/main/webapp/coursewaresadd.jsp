@@ -11,6 +11,14 @@
 
     <title>Blank | Creative - Bootstrap 3 Responsive Admin Template</title>
 
+    <!-- javascripts -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- nice scroll -->
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
+    <script src="js/scripts.js"></script>
+
     <!-- Bootstrap CSS -->    
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
@@ -412,8 +420,24 @@
                              添加课件
                           </header>
                           <div class="panel-body">
+                                 <script>
+                                   $(document).ready(function(){
+                                       $.get("/JSONCourses",function(data,status){
+                                       for(var course in data.courseNames){
+                                           $("#courseid").append("<option value='"+data.courseNames[course].id+"'>"+data.courseNames[course].name+"</option>");
+                                       }
+                                       });
+                                   });
+                                 </script>
                               <div class="form">
                                   <form class="form-validate form-horizontal " id="register_form" action="CoursewaresAdd" method="post"  enctype="multipart/form-data">
+                                      <div class="form-group ">
+                                          <label for="name" class="control-label col-lg-2">相关课程 <span class="required">*</span></label>
+                                          <div class="col-lg-10">
+                                              <select class=" form-control" id="courseid" name="courseid" type="text" >
+                                              </select>
+                                          </div>
+                                      </div>
                                       <div class="form-group ">
                                           <label for="name" class="control-label col-lg-2">课件标题 <span class="required">*</span></label>
                                           <div class="col-lg-10">
@@ -452,13 +476,6 @@
       <!--main content end-->
   </section>
   <!-- container section end -->
-    <!-- javascripts -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- nice scroll -->
-    <script src="js/jquery.scrollTo.min.js"></script>
-    <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
-    <script src="js/scripts.js"></script>
 
 
   </body>

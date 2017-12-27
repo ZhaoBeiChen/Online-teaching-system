@@ -5,7 +5,9 @@ import DAO.BaseDAOImpl;
 import Model.Course;
 import Model.Offered;
 import Model.Teacher;
+import View.JSONCourseView;
 import View.OfferedView;
+import com.opensymphony.xwork2.ActionContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,5 +41,28 @@ public class OfferedService extends BaseServiceImpl<Offered>{
             }
         }
         return offeredViews;
+    }
+
+    public List<JSONCourseView> getNames(String keyword) {
+        if(keyword==null){
+            keyword="";
+        }
+        List<Offered> offeredList = getBySQL("from Offered");
+        List<JSONCourseView> courseNames = null;
+        String usertype = (String) ActionContext.getContext().getSession().get("usertype");
+        if(usertype.equals("teacher")) {
+            Teacher teacher = (Teacher) ActionContext.getContext().getSession().get("user");
+            courseNames = new ArrayList<JSONCourseView>();
+            for (Offered o : offeredList) {
+                if (o.getTeacherid() == teacher.getId()) {
+                    Course course = (Course) get(Course.class, o.getCourseid());
+                    JSONCourseView item = new JSONCourseView();
+                    item.setId(course.getId());
+                    item.setName(course.getName());
+                    courseNames.add(item);
+                }
+            }
+        }
+        return courseNames;
     }
 }

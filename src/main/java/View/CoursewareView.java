@@ -1,5 +1,6 @@
 package View;
 
+import Model.Course;
 import Model.Teacher;
 
 import java.sql.Timestamp;
@@ -9,7 +10,10 @@ public class CoursewareView {
     private String name;
     private String content;
     private String path;
+
     private Teacher teacher;
+    private Course course;
+
     private String grade;
     private Timestamp time;
 
@@ -68,4 +72,13 @@ public class CoursewareView {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
 }

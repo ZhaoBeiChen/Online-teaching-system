@@ -42,6 +42,9 @@
         <property name="courseService">
             <bean class="Service.CourseService"/>
         </property>
+        <property name="offeredService">
+            <bean class="Service.OfferedService"/>
+        </property>
     </bean>
     <bean id="CoursewareAction" class="Controller.CoursewareAction">
         <property name="coursewareService">

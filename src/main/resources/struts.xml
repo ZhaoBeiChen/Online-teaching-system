@@ -32,17 +32,30 @@
             <result name="fail">/404.jsp</result>
         </action>
     </package>
+    <package name="json-course" namespace="/" extends="json-default">
+        <action name="JSONCourses" class="CourseAction" method="getJSON">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
     <package name="courseware" namespace="/" extends="struts-default">
         <action name="Coursewares" class="CoursewareAction" method="Show">
             <result name="success">/coursewares.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
         <action name="CoursewaresAdd" class="CoursewareAction" method="Add">
+            <interceptor-ref name="defaultStack">
+                <param name="fileUpload.maximumSize">500000000</param>
+                <param name="fileUpload.allowedTypes">text/plain,application/vnd.ms-powerpoint,application/vnd.ms-excel,application/msword</param>
+                <param name="fileUpload.allowedExtensions">.txt,.ppt,.pptx,.doc,.docx</param>
+            </interceptor-ref>
             <result name="success" type="redirectAction">Coursewares</result>
             <result name="fail">/404.jsp</result>
         </action>
         <action name="CoursewaresDownload" class="CoursewareAction" method="Download">
-            <result name="success">
+            <result name="success" type="stream">
+                <param name="inputName">fileInput</param>
+                <param name="contentDisposition">attachment;filename="${fileFileName}"</param>
             </result>
             <result name="fail">/404.jsp</result>
         </action>

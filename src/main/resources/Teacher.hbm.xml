@@ -8,5 +8,6 @@
         <property name="name"/>  
         <property name="password"/>
         <property name="email"/>
+
     </class>
 </hibernate-mapping>
