@@ -15,10 +15,18 @@
             <result name="success">/index.jsp</result>
             <result name="fail">/login.jsp</result>
         </action>
+        <action name="Index" class="CommonAction" method="Index">
+            <result name="success">/index.jsp</result>
+            <result name="fail">/login.jsp</result>
+        </action>
     </package>
     <package name="common" namespace="/" extends="struts-default">
         <action name="Login" class="CommonAction" method="Login">
             <result name="success">/index.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="Logout" class="CommonAction" method="Logout">
+            <result name="success">/login.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
         <action name="Search" class="CommonAction" method="Search">
@@ -32,8 +40,12 @@
             <result name="fail">/404.jsp</result>
         </action>
     </package>
-    <package name="json-course" namespace="/" extends="json-default">
-        <action name="JSONCourses" class="CourseAction" method="getJSON">
+    <package name="jsons" namespace="/" extends="json-default">
+        <action name="JSONCourses" class="CourseAction" method="JSONCourses">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="JSONClasses" class="ClassAction" method="JSONClasses">
             <result name="success" type="json"></result>
             <result name="fail">/404.jsp</result>
         </action>
@@ -49,6 +61,10 @@
                 <param name="fileUpload.allowedTypes">text/plain,application/vnd.ms-powerpoint,application/vnd.ms-excel,application/msword</param>
                 <param name="fileUpload.allowedExtensions">.txt,.ppt,.pptx,.doc,.docx</param>
             </interceptor-ref>
+            <result name="success" type="redirectAction">Coursewares</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="CoursewaresDelete" class="CoursewareAction" method="Delete">
             <result name="success" type="redirectAction">Coursewares</result>
             <result name="fail">/404.jsp</result>
         </action>
@@ -78,6 +94,10 @@
             <result name="fail">/404.jsp</result>
         </action>
         <action name="ArticlesAdd" class="ArticleAction" method="Add">
+            <result name="success" type="redirectAction">Articles</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="ArticlesDelete" class="ArticleAction" method="Delete">
             <result name="success" type="redirectAction">Articles</result>
             <result name="fail">/404.jsp</result>
         </action>

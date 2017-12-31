@@ -25,11 +25,11 @@ public class CoursewareService  extends BaseServiceImpl<Courseware> {
         BaseDAO<Courseware> dao = new BaseDAOImpl<Courseware>();
         super.setDao(dao);
     }
-    public List<CoursewareView> getListViews(String keyword) {
+    public List<CoursewareView> getListViews(String keyword,String condition) {
         if(keyword==null){
             keyword="";
         }
-        List<Courseware> coursewareList = getBySQL("from Courseware");
+        List<Courseware> coursewareList = getBySQL("from Courseware " + condition);
         List<CoursewareView> coursewareViews = new ArrayList<CoursewareView>();
         for(Courseware c : coursewareList){
             Teacher teacher = (Teacher) get(Teacher.class,c.getAuthorid());

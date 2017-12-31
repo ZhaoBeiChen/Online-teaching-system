@@ -20,11 +20,11 @@ public class ArticleService  extends BaseServiceImpl<Article>{
         super.setDao(dao);
     }
 
-    public List<ArticleView> getListViews(String keyword) {
+    public List<ArticleView> getListViews(String keyword , String condition) {
         if(keyword==null){
             keyword="";
         }
-        List<Article> articleList = getBySQL("from Article");
+        List<Article> articleList = getBySQL("from Article "+condition);
         List<ArticleView> articleViews = new ArrayList<ArticleView>();
         for(Article a : articleList){
             Teacher teacher = (Teacher) get(Teacher.class,a.getAuthorid());

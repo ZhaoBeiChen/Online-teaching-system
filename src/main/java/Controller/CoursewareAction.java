@@ -13,7 +13,7 @@ public class CoursewareAction extends ActionSupport {
     private CoursewareService coursewareService;
     //private Courseware courseware;
     private int id;
-    private int courseid;
+    private int courseid = -1;
     private String name;
     private String content;
     private File file;
@@ -22,9 +22,18 @@ public class CoursewareAction extends ActionSupport {
 
     public String Show() {
         coursewareService.init();
-        List<CoursewareView> coursewareViews = coursewareService.getListViews("");
+        String condition = null;
+        if(courseid<=-1){
+            condition = "";
+        }
+        else{
+            condition = "where courseid="+courseid;
+        }
+        ActionContext.getContext().getSession().remove("coursewareViews");
+        List<CoursewareView> coursewareViews = coursewareService.getListViews("",condition);
         ActionContext.getContext().getSession().put("coursewareViews", coursewareViews);
         coursewareService.clear();
+        courseid = -1;
         return "success";
     }
 
@@ -36,6 +45,12 @@ public class CoursewareAction extends ActionSupport {
             e.printStackTrace();
             return "fail";
         }
+        coursewareService.clear();
+        return "success";
+    }
+    public String Delete(){
+        coursewareService.init();
+        coursewareService.delete(coursewareService.getById(Courseware.class,id));
         coursewareService.clear();
         return "success";
     }

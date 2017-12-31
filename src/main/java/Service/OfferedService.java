@@ -18,7 +18,7 @@ public class OfferedService extends BaseServiceImpl<Offered>{
         super.setDao(dao);
     }
 
-    public List<OfferedView> getListViews(String keyword) {
+    public List<OfferedView> getListViews(String keyword, int courseid) {
         if(keyword==null){
             keyword="";
         }
@@ -37,7 +37,9 @@ public class OfferedService extends BaseServiceImpl<Offered>{
                     view.getCourse().getContent().contains(keyword) ||
                     view.getTeacher().getName().contains(keyword) ||
                     view.getTeacher().getEmail().contains(keyword)){
-                offeredViews.add(view);
+                if(courseid==-1||courseid==view.getCourse().getId()) {
+                    offeredViews.add(view);
+                }
             }
         }
         return offeredViews;

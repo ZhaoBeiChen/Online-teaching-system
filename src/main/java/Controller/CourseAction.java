@@ -26,10 +26,10 @@ public class CourseAction extends ActionSupport
         courseService.clear();
         return "success";
     }
-    public String getJSON(){
-        offeredService.init();
-        courseNames = offeredService.getNames("");
-        offeredService.clear();
+    public String JSONCourses(){
+        courseService.init();
+        courseNames = courseService.getNames("");
+        courseService.clear();
         return "success";
     }
 

@@ -9,10 +9,10 @@ import java.util.List;
 
 public class OfferedAction extends ActionSupport {
     private OfferedService offeredService;
-
+    private int courseid = -1;
     public String Show(){
         offeredService.init();
-        List<OfferedView> offeredViews = offeredService.getListViews("");
+        List<OfferedView> offeredViews = offeredService.getListViews("",courseid);
         ActionContext.getContext().getSession().put("offeredViews",offeredViews);
         offeredService.clear();
         return "success";
@@ -24,5 +24,13 @@ public class OfferedAction extends ActionSupport {
 
     public void setOfferedService(OfferedService offeredService) {
         this.offeredService = offeredService;
+    }
+
+    public int getCourseid() {
+        return courseid;
+    }
+
+    public void setCourseid(int courseid) {
+        this.courseid = courseid;
     }
 }
