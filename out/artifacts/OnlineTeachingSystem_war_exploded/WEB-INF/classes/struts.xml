@@ -70,6 +70,10 @@
         </action>
     </package>
     <package name="message" namespace="/" extends="struts-default">
+        <action name="MessageList" class="MessageAction" method="show">
+            <result name="success">/messageList.jsp</result>
+            <result name="error">/404.jsp</result>
+        </action>
         <action name="MessageAdd" class="MessageAction" method="add">
             <result name="success">/index.jsp</result>
             <result name="fail">/404.jsp</result>

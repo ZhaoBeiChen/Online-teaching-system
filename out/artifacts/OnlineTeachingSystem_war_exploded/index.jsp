@@ -12,7 +12,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Creative - Bootstrap Admin Template</title>
+    <title>网上教学系统</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -402,7 +402,7 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" href="publishMessage.jsp">发布消息</a></li>
-                        <li><a class="" href="changeMessage.jsp">修改消息</a></li>
+                        <li><a class="" href="MessageList">消息列表</a></li>
                     </ul>
                 </li>
 

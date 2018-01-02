@@ -441,9 +441,9 @@
                                                  <td><%=c.getTime()%></td>
                                                  <td>
                                                      <div class="btn-group">
-                                                        <a class="btn btn-primary" href="#">查看</i></a>
-                                                        <a class="btn btn-success" href="/CoursewaresDownload?id=<%=c.getId()%>">下载</i></a>
-                                                        <a class="btn btn-danger" href="#">删除</i></a>
+                                                        <a class="btn btn-primary" href="#">查看</a>
+                                                        <a class="btn btn-success" href="/CoursewaresDownload?id=<%=c.getId()%>">下载</a>
+                                                        <a class="btn btn-danger" href="#">删除</a>
                                                     </div>
                                                  </td>
                                             </tr>

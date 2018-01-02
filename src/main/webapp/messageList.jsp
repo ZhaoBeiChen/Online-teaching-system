@@ -1,4 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="Model.Message" %>
 <%@ page import="com.opensymphony.xwork2.ActionContext" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="org.apache.struts2.ServletActionContext" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,10 +37,6 @@
 </head>
 
 <body>
-<%
-    String username = (String) ActionContext.getContext().getSession().get("username");
-    String usertype = (String) ActionContext.getContext().getSession().get("usertype");
-%>
 <!-- container section start -->
 <section id="container" class="">
     <!--header start-->
@@ -54,14 +54,21 @@
             <!--  search form start -->
             <ul class="nav top-menu">
                 <li>
-                    <form class="navbar-form" action="Search" method="post">
-                        <input name="keyword" class="form-control" placeholder="Search" type="text">
-                        <select name="condition" class="btn btn-primary selectpicker">
-                            <option value="all">全部</option>
-                            <option value="article">文章</option>
-                            <option value="courseware">课件</option>
-                            <option value="course">课程相关</option>
-                        </select>
+                    <form class="navbar-form">
+                        <input class="form-control" placeholder="Search" type="text">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                全部 <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">全部</a></li>
+                                <li><a href="#">课程信息</a></li>
+                                <li><a href="#">文章</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">课件</a></li>
+                            </ul>
+                        </div><!-- /btn-group -->
                         <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator"
                                value="搜索"></input>
                     </form>
@@ -276,13 +283,13 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                        <span class="username"><%=username%></span>
+                        <span class="username">苦逼学生A</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
                         <li class="eborder-top">
-                            <a href="personalInformation.jsp"><i class="icon_profile"></i> 我的资料</a>
+                            <a href="#"><i class="icon_profile"></i> 我的资料</a>
                         </li>
                         <%--<li>--%>
                         <%--<a href="#"><i class="icon_mail_alt"></i> My Inbox</a>--%>
@@ -329,14 +336,8 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/Articles">查看文章</a></li>
-                        <%
-                            if (usertype != null && (usertype.equals("teacher") || usertype.equals("admin"))) {
-                        %>
-                        <li><a class="" href="/articlesadd.jsp">添加文章</a></li>
-                        <%
-                            }
-                        %>
+                        <li><a class="" href="articles.jsp">查看文章</a></li>
+                        <li><a class="" href="articlesadd.jsp">添加文章</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -345,44 +346,41 @@
                         <span>课件</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
-                <li><a class="" href="/Coursewares">查看课件</a></li>
-                <%
-                    if (usertype != null && (usertype.equals("teacher") || usertype.equals("admin"))) {
-                %>
-                <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
-                <%
-                    }
-                %>
+                    <ul class="sub">
+                        <li><a class="" href="coursewares.jsp">查看课件</a></li>
+                        <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a class="" href="/Courses">
+                    <a class="" href="courses.jsp">
                         <i class="icon_genius"></i>
                         <span>课程信息</span>
                     </a>
                 </li>
                 <li>
-                    <a class="" href="/Offered"><!--chart-chartjs.jsp-->
+                    <a class="" href="chart-chartjs.jsp">
                         <i class="icon_piechart"></i>
                         <span>开课信息</span>
                     </a>
                 </li>
 
-                <li>
-                    <a class="" href="/Selected"><!--chart-chartjs.jsp-->
+                <li class="sub-menu">
+                    <a href="selected.jsp" class="">
                         <i class="icon_table"></i>
                         <span>已选课程</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                 </li>
 
                 <li class="sub-menu ">
                     <a href="javascript:;" class="">
-                        <i class="icon_table"></i>
+                        <i class="icon_documents_alt"></i>
                         <span>消息管理</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
                         <li><a class="" href="publishMessage.jsp">发布消息</a></li>
-                        <li><a class="" href="MessageList">消息列表</a></li>
+                        <li><a class="" href="messageList.jsp"><span>消息列表</span></a></li>
                     </ul>
                 </li>
 
@@ -397,16 +395,52 @@
         <section class="wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
+                    <h3 class="page-header"><i class="fa fa fa-bars"> 消息列表</i></h3>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.jsp">Home</a></li>
-                        <li><i class="fa fa-bars"></i>Pages</li>
-                        <li><i class="fa fa-square-o"></i>Pages</li>
+                        <li><i class="fa fa-home"></i><a href="index.jsp">首页</a></li>
+                        <li><i class="fa fa-bars"></i>消息列表</li>
                     </ol>
                 </div>
             </div>
             <!-- page start-->
+            <section class="panel">
+                <header class="panel-heading">
+                    消息列表
+                </header>
 
+                <table class="table table-striped table-advance table-hover">
+                    <tbody>
+                    <tr>
+                        <th><i class="icon_profile"></i> 标题</th>
+                        <th><i class="icon_calendar"></i> 内容</th>
+                        <th><i class="icon_mail_alt"></i> 发布时间</th>
+                        <th><i class="icon_mail_alt"></i> 操作</th>
+                    </tr>
+                    <%
+                        List<Message> messageList = (List<Message>) ServletActionContext.getRequest().getAttribute("messageView");
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                        for (Message temp : messageList){
+                            String time = sdf.format(temp.getTime());
+                    %>
+
+                    <tr>
+                        <td><%=temp.getName()%></td>
+                        <td><%=temp.getContent()%></td>
+                        <td><%=time%></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="ChangeMessage?messageId=<%=temp.getId()%>"><i class="icon_plus_alt2">修改</i></a>
+                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2">删除</i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                    <%
+                        }
+                    %>
+                </table>
+            </section>
             <!-- page end-->
         </section>
     </section>
