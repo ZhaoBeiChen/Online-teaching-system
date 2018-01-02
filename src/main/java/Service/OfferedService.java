@@ -6,6 +6,7 @@ import Model.Course;
 import Model.Offered;
 import Model.Teacher;
 import View.JSONCourseView;
+import View.JSONOfferedView;
 import View.OfferedView;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -66,5 +67,30 @@ public class OfferedService extends BaseServiceImpl<Offered>{
             }
         }
         return courseNames;
+    }
+    public List<JSONOfferedView> getNames() {
+        List<Offered> offeredList = getBySQL("from Offered");
+        List<JSONOfferedView> offeredViews = new ArrayList<JSONOfferedView>();
+        for(Offered o : offeredList){
+            Course course = (Course) get(Course.class,o.getCourseid());
+            Teacher teacher = (Teacher) get(Teacher.class,o.getTeacherid());
+            JSONOfferedView view = new JSONOfferedView();
+            view.setId(o.getId());
+            view.setCourseid(course.getId());
+            view.setCourseName(course.getName());
+            view.setTeacherid(teacher.getId());
+            view.setTeacherName(teacher.getName());
+            offeredViews.add(view);
+            }
+        return offeredViews;
+    }
+
+    public boolean setAdd(Offered offered) {
+        Teacher teacher = (Teacher) load(Teacher.class,offered.getTeacherid());
+        Course course = (Course) load(Course.class,offered.getCourseid());
+        offered.setTeacher(teacher);
+        offered.setCourse(course);
+        save(offered);
+        return true;
     }
 }

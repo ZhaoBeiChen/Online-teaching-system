@@ -225,20 +225,38 @@
                           <header class="panel-heading">
                               课程信息
                           </header>
-                          <div class="list-group">
                                       <%
                                       List<Course> courseList = (List<Course>)ActionContext.getContext().get("courseList");
+                                      int i=0;
                                       for(Course c : courseList){
                                       %>
-                                            <a class="list-group-item " href="javascript:;">
-                                                <h4 class="list-group-item-heading"><%=c.getName()%></h4>
-                                                <p class="list-group-item-text"><%=c.getContent()%></p>
-                                            </a>
-                                      <%
-                                      }
-                                      %>
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
+                                          <%=c.getName()%>
+                                                        <%
 
-                          </div>
+                                                        if(usertype.equals("admin")){
+                                                        %>
+                                                        <a class="btn btn-danger navbar-right" href="/CoursesDelete?id=<%=c.getId()%>">删除</i></a>
+                                                        <%
+                                                        }
+                                                        %>
+                                      </a>
+                                  </h4>
+                              </div>
+                              <div id="collapse<%=i%>" class="panel-collapse collapse in">
+                                  <div class="panel-body">
+                                        <pre><%=c.getContent()%></pre>
+                                  </div>
+                              </div>
+
+                                                    <%
+                                                    i=i+1;
+                                                    }
+                                                    %>
+
                       </section>
                   </div>
               </div>

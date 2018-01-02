@@ -39,6 +39,14 @@
             <result name="success">/courses.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
+        <action name="CoursesAdd" class="CourseAction" method="Add">
+            <result name="success" type="redirectAction">Courses</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="CoursesDelete" class="CourseAction" method="Delete">
+            <result name="success" type="redirectAction">Courses</result>
+            <result name="fail">/404.jsp</result>
+        </action>
     </package>
     <package name="jsons" namespace="/" extends="json-default">
         <action name="JSONCourses" class="CourseAction" method="JSONCourses">
@@ -46,6 +54,14 @@
             <result name="fail">/404.jsp</result>
         </action>
         <action name="JSONClasses" class="ClassAction" method="JSONClasses">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="JSONOffereds" class="OfferedAction" method="JSONOffereds">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="JSONTeachers" class="TeacherAction" method="JSONTeachers">
             <result name="success" type="json"></result>
             <result name="fail">/404.jsp</result>
         </action>
@@ -81,10 +97,26 @@
             <result name="success">/offered.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
+        <action name="OfferedAdd" class="OfferedAction" method="Add">
+            <result name="success" type="redirectAction">Offered</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="OfferedDelete" class="OfferedAction" method="Delete">
+            <result name="success" type="redirectAction">Offered</result>
+            <result name="fail">/404.jsp</result>
+        </action>
     </package>
     <package name="selected" namespace="/" extends="struts-default">
         <action name="Selected" class="SelectedAction" method="Show">
             <result name="success">/selected.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="SelectedAdd" class="SelectedAction" method="Add">
+            <result name="success" type="redirectAction">Selected</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="SelectedDelete" class="SelectedAction" method="Delete">
+            <result name="success" type="redirectAction">Selected</result>
             <result name="fail">/404.jsp</result>
         </action>
     </package>

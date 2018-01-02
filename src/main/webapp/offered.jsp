@@ -302,6 +302,13 @@
                                                     <th>开课老师</th>
                                                     <th>起始时间</th>
                                                     <th>结束时间</th>
+                                                    <%
+                                                    if(usertype.equals("admin")){
+                                                    %>
+                                                    <th>操作</th>
+                                                    <%
+                                                    }
+                                                    %>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -315,6 +322,13 @@
                                         <td><%=o.getTeacher().getName()%></td>
                                         <td><%=o.getDatestart()%></td>
                                         <td><%=o.getDateend()%></td>
+                                                    <%
+                                                    if(usertype.equals("admin")){
+                                                    %>
+                                                    <td><a class="btn btn-danger" href="/OfferedDelete?id=<%=o.getId()%>">删除</i></a></td>
+                                                    <%
+                                                    }
+                                                    %>
                                       </tr>
                                       <%
                                       }

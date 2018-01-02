@@ -7,7 +7,7 @@
         </id> 
         <property name="offeredid" insert="false" update="false"/>
         <property name="classid" insert="false" update="false"/>
-        <many-to-one name="offered" class="Model.Offered" column="offeredid"/>
+        <many-to-one name="offered" class="Model.Offered" column="offeredid" />
         <many-to-one name="class0" class="Model.Class" column="classid"/>
     </class>
 </hibernate-mapping>

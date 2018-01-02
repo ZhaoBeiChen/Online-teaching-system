@@ -312,7 +312,7 @@
                                       </a>
                                   </h4>
                               </div>
-                              <div id="collapse<%=i%>" class="panel-collapse collapse">
+                              <div id="collapse<%=i%>" class="panel-collapse collapse in">
                                   <div class="panel-body">
                                         <pre><%=a.getContent()%></pre>
                                   </div>

@@ -164,23 +164,59 @@
                         %>
                     </ul>
                 </li>
-                <li>
-                    <a class="" href="/Courses">
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                         <i class="icon_genius"></i>
                         <span>课程信息</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
+                    <ul class="sub">
+                        <li><a class="" href="/Courses">查看课程</a></li>
+                        <%
+                            if(usertype!=null&&(usertype.equals("admin")))
+                            {
+                        %>
+                            <li><a class="" href="coursesadd.jsp">添加课程</a></li>
+                        <%
+                            }
+                        %>
+                    </ul>
                 </li>
-                <li>
-                    <a class="" href="/Offered"><!--chart-chartjs.jsp-->
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                         <i class="icon_piechart"></i>
                         <span>开课信息</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
+                    <ul class="sub">
+                        <li><a class="" href="/Offered">查看开课</a></li>
+                        <%
+                            if(usertype!=null&&(usertype.equals("admin")))
+                            {
+                        %>
+                            <li><a class="" href="offeredadd.jsp">添加开课</a></li>
+                        <%
+                            }
+                        %>
+                    </ul>
                 </li>
-                <li>
-                    <a class="" href="/Selected"><!--chart-chartjs.jsp-->
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                         <i class="icon_table"></i>
                         <span>已选课程</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
+                    <ul class="sub">
+                        <li><a class="" href="/Selected">查看已选</a></li>
+                        <%
+                            if(usertype!=null&&(usertype.equals("admin")))
+                            {
+                        %>
+                            <li><a class="" href="selectedadd.jsp">添加已选</a></li>
+                        <%
+                            }
+                        %>
+                    </ul>
                 </li>
                         <%
                             if(usertype!=null&&(usertype.equals("teacher")))

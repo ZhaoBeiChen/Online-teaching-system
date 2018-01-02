@@ -31,7 +31,7 @@ public class CourseService extends BaseServiceImpl<Course> {
         List<Course> courseList = getBySQL("from Course");
         List<JSONCourseView> courseNames = null;
         String usertype = (String) ActionContext.getContext().getSession().get("usertype");
-        if(usertype.equals("teacher")) {
+        if(usertype!=null&&(usertype.equals("teacher")||usertype.equals("admin"))) {
             //Teacher teacher = (Teacher) ActionContext.getContext().getSession().get("user");
             courseNames = new ArrayList<JSONCourseView>();
             for (Course c : courseList) {
@@ -43,4 +43,5 @@ public class CourseService extends BaseServiceImpl<Course> {
         }
         return courseNames;
     }
+
 }

@@ -24,7 +24,7 @@ public class CommonAction extends ActionSupport
     private String password;
 
     public String Index(){
-        username="teacher";
+        username="admin";
         password="123456";
         Login();
         if(ActionContext.getContext().getSession().get("username")!=null){

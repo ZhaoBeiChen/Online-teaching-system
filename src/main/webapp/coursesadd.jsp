@@ -1,10 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="View.SelectedView"%>
 <%@page import="com.opensymphony.xwork2.ActionContext"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +10,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>选课信息</title>
+    <title>Blank | Creative - Bootstrap 3 Responsive Admin Template</title>
 
     <!-- javascripts -->
     <script src="js/jquery.js"></script>
@@ -22,6 +19,7 @@
     <script src="js/jquery.scrollTo.min.js"></script>
     <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
     <script src="js/scripts.js"></script>
+
     <!-- Bootstrap CSS -->    
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
@@ -216,7 +214,6 @@
     </aside>
     <!--sidebar end-->
 
-
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
@@ -231,112 +228,39 @@
 				</div>
 			</div>
               <!-- page start-->
-       <div class="row">
-                                    <div class="col-lg-12">
-      <nav class="navbar navbar-default" role="navigation">
-                                                                         <!-- Brand and toggle get grouped for better mobile display -->
-                                                                         <div class="navbar-header">
-                                                                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                                                                                 <span class="sr-only">Toggle navigation</span>
-                                                                                 <span class="icon-bar"></span>
-                                                                                 <span class="icon-bar"></span>
-                                                                                 <span class="icon-bar"></span>
-                                                                             </button>
-                                                                             <a class="navbar-brand" href="#">选择</a>
-                                                                         </div>
-
-                                                                         <!-- Collect the nav links, forms, and other content for toggling -->
-                                                                         <div class="collapse navbar-collapse navbar-ex1-collapse">
-                                                               <script>
-                                                                 $(document).ready(function(){
-                                                                     $.get("/JSONClasses",function(data,status){
-                                                                     for(var key in data.classes){
-                                                                         $("#courseid").append("<li><a href='"+"/Selected?classid="+data.classes[key].id+"'>"+data.classes[key].name+"</a></li>");
-                                                                     }
-                                                                     });
-                                                                 });
-                                                               </script>
-                                                                             <ul class="nav navbar-nav">
-
-                                                                                 <!--<li class="active"><a href="#">正序</a></li>
-                                                                                 <li><a href="javascript:;">倒序</a></li>-->
-                                                                                 <li class="dropdown">
-                                                                                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">选择班级 <b class="caret"></b></a>
-                                                                                     <ul class="dropdown-menu" id="courseid">
-                                                                                     <li><a href="/Selected?courseid=-1">全部</a></li>
-                                                                                     </ul>
-                                                                                 </li>
-                                                                             </ul>
-                                                                             <!--<form class="navbar-form navbar-left" role="search">-->
-                                                                             <!--<div class="form-group">-->
-                                                                             <!--<input type="text" class="form-control" placeholder="Search">-->
-                                                                             <!--</div>-->
-                                                                             <!--<button type="submit" class="btn btn-default">Submit</button>-->
-                                                                             <!--</form>-->
-                                                                             <!--<ul class="nav navbar-nav navbar-right">
-                                                                                 <li><a href="javascript:;">Link</a></li>
-                                                                                 <li class="dropdown">
-                                                                                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                                                                     <ul class="dropdown-menu">
-                                                                                         <li><a href="#">Action</a></li>
-                                                                                         <li><a href="#">Another action</a></li>
-                                                                                         <li><a href="#">Something else here</a></li>
-                                                                                         <li><a href="#">Separated link</a></li>
-                                                                                     </ul>
-                                                                                 </li>
-                                                                             </ul>-->
-                                                                         </div><!-- /.navbar-collapse -->
-                                                                     </nav>
-
-                                        <section class="panel">
-                                            <header class="panel-heading no-border">
-                                                已选课程
-                                            </header>
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>课程名称</th>
-                                                    <th>开课老师</th>
-                                                    <th>所选班级</th>
-                                                    <th>老师邮箱</th>
-                                                    <%
-                                                    if(usertype.equals("admin")){
-                                                    %>
-                                                    <th>操作</th>
-                                                    <%
-                                                    }
-                                                    %>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                      <%
-                                      List<SelectedView> selectedViews = (ArrayList<SelectedView>)ActionContext.getContext().getSession().get("selectedViews");
-                                      for(SelectedView s : selectedViews){
-                                      %>
-                                      <tr>
-                                        <td><%=s.getId()%></td>
-                                        <td><%=s.getOffered().getCourse().getName()%></td>
-                                        <td><%=s.getOffered().getTeacher().getName()%></td>
-                                        <td><%=s.getClass1().getName()%></td>
-                                        <td><%=s.getOffered().getTeacher().getEmail()%></td>
-                                                    <%
-                                                    if(usertype.equals("admin")){
-                                                    %>
-                                                    <td><a class="btn btn-danger" href="/SelectedDelete?id=<%=s.getId()%>">删除</i></a></td>
-                                                    <%
-                                                    }
-                                                    %>
-                                      </tr>
-                                      <%
-                                      }
-                                      %>
-                                          </tbody>
-                                            </table>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
+  <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading">
+                             添加课程
+                          </header>
+                          <div class="panel-body">
+                              <div class="form">
+                                  <form class="form-validate form-horizontal " id="register_form" action="CoursesAdd" method="post" >
+                                      <div class="form-group ">
+                                          <label for="name" class="control-label col-lg-2">课程名称 <span class="required">*</span></label>
+                                          <div class="col-lg-10">
+                                              <input class=" form-control" id="name" name="course.name" type="text" />
+                                          </div>
+                                      </div>
+                                      <div class="form-group ">
+                                          <label for="content" class="control-label col-lg-2">课程介绍<span class="required">*</span></label>
+                                          <div class="col-lg-10">
+                                              <textarea class="form-control " id="content" name="course.content" type="text" style="resize:none;height:260px;" ></textarea>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="col-lg-offset-2 col-lg-10">
+                                              <button class="btn btn-primary" type="submit">添加</button>
+                                              <button class="btn btn-default" type="button">取消</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </section>
+                  </div>
+              </div>
               <!-- page end-->
           </section>
       </section>

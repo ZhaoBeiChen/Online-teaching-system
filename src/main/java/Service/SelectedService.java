@@ -52,4 +52,12 @@ public class SelectedService  extends BaseServiceImpl<Selected>{
         return selectedViews;
     }
 
+    public boolean setAdd(Selected selected) {
+        Offered offered = (Offered) load(Offered.class,selected.getOfferedid());
+        Class class0 = (Class) load(Class.class,selected.getClassid());
+        selected.setOffered(offered);
+        selected.setClass0(class0);
+        save(selected);
+        return true;
+    }
 }
