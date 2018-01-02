@@ -152,4 +152,10 @@
             <result name="fail">/404.jsp</result>
         </action>
     </package>
+    <package name="classes" namespace="/" extends="struts-default">
+        <action name="ClassListForMessage" class="ClassAction" method="getList">
+            <result name="success">/publishMessage.jsp</result>
+            <result name="error">/404.jsp</result>
+        </action>
+    </package>
 </struts>

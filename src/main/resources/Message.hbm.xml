@@ -8,6 +8,7 @@
         <property name="name"/>  
         <property name="content"/>
         <property name="authorid" />
+        <property name="classid" />
         <property name="grade"/>
         <property name="time"/>
     </class>

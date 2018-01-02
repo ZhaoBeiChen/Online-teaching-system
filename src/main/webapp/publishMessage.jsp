@@ -2,6 +2,8 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Model.Class" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -241,16 +243,26 @@
                             </div>
                         </div>
 
+                        <%
+                            List<Class> classList = (List<Class>) ActionContext.getContext().getSession().get("classList");
+                        %>
+
                         <div class="form-group">
                             <label class="control-label col-sm-4">班级</label>
                             <div class="col-sm-6">
                                 <div class="input-prepend">
                                     <select class="form-control m-bot15" name="message.classid">
-                                        <option value="all">全部</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+
+                                        <%
+                                        for (Class temp : classList) {
+                                        %>
+
+                                        <option value="<%=temp.getId()%>"><%=temp.getName()%></option>
+
+                                        <%
+                                            }
+                                        %>
+
                                     </select>
                                 </div>
                             </div>

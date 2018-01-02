@@ -16,7 +16,6 @@ public class MessageAction extends ActionSupport {
     public String show(){
         messageService.init();
         List<Message> messageList = messageService.getList();
-        System.out.println("1");
         ServletActionContext.getRequest().setAttribute("messageView",messageList);
         //messageList.clear();
         return SUCCESS;
@@ -53,7 +52,6 @@ public class MessageAction extends ActionSupport {
         }else {
             return ERROR;
         }
-
     }
 
 

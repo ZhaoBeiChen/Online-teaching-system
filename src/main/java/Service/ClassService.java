@@ -13,7 +13,7 @@ public class ClassService  extends BaseServiceImpl<Class> {
     }
 
     public List<Class> getList(){
-        List<Class> classList =getBySQL("from class");
+        List<Class> classList =getBySQL("from Class");
         return classList;
     }
 

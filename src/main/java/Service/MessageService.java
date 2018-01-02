@@ -32,6 +32,7 @@ public class MessageService extends BaseServiceImpl<Message> {
         mes.setAuthorid(teacher.getId());
         mes.setContent(message.getContent());
         mes.setName(message.getName());
+        mes.setClassid(message.getClassid());
         mes.setGrade(new SimpleDateFormat("yyyy").format(new Date()));
         mes.setTime(new Timestamp(new Date().getTime()));
         if (save(mes)) {

@@ -10,6 +10,16 @@ import java.util.List;
 
 public class ClassAction extends ActionSupport{
     private ClassService classService;
+    private Class aClass;
+
+    public Class getaClass() {
+        return aClass;
+    }
+
+    public void setaClass(Class aClass) {
+        this.aClass = aClass;
+    }
+
     private List<Class> classes;
     public String JSONClasses(){
         classService.init();
