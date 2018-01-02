@@ -235,10 +235,11 @@
                           <input type="hidden" value="<%=message.getId()%>" name="message.id">
                           <input type="hidden" value="<%=message.getAuthorid()%>" name="message.authorid">
                           <input type="hidden" value="<%=message.getGrade()%>" name="message.grade">
+                          <input type="hidden" value="<%=message.getTime()%>" name="message.time">
                           <div class="form-group">
                               <label class="control-label col-sm-4">标题</label>
                               <div class="col-sm-6">
-                                  <input id="cp1" type="text" value="" name="message.name" size="16" class="form-control">
+                                  <input id="cp1" type="text" value="<%=message.getName()%>" name="message.name" size="16" class="form-control">
                               </div>
                           </div>
 
@@ -246,7 +247,7 @@
                               <label class="control-label col-sm-4">内容</label>
                               <div class="col-sm-6">
                                   <div class="input-prepend">
-                                      <input id="reservation" type="text" name="message.content" class=" form-control" />
+                                      <input id="reservation" type="text" value="<%=message.getContent()%>" name="message.content" class=" form-control" />
                                   </div>
                               </div>
                           </div>

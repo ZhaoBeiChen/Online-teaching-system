@@ -37,10 +37,26 @@
             <bean class="Service.SelectedService"/>
         </property>
     </bean>
+    <bean id="TeacherAction" class="Controller.TeacherAction">
+        <property name="teacherService">
+            <bean class="Service.TeacherService"/>
+        </property>
+    </bean>
+    <bean id="ClassAction" class="Controller.ClassAction">
+        <property name="classService">
+            <bean class="Service.ClassService"/>
+        </property>
+    </bean>
 
     <bean id="CourseAction" class="Controller.CourseAction">
         <property name="courseService">
             <bean class="Service.CourseService"/>
+        </property>
+        <property name="offeredService">
+            <bean class="Service.OfferedService"/>
+        </property>
+        <property name="selectedService">
+            <bean class="Service.SelectedService"/>
         </property>
     </bean>
     <bean id="CoursewareAction" class="Controller.CoursewareAction">
@@ -53,6 +69,9 @@
         <property name="offeredService">
             <bean class="Service.OfferedService"/>
         </property>
+        <property name="selectedService">
+            <bean class="Service.SelectedService"/>
+        </property>
     </bean>
 
     <bean id="SelectedAction" class="Controller.SelectedAction">
@@ -64,9 +83,6 @@
     <bean id="ArticleAction" class="Controller.ArticleAction">
         <property name="articleService">
             <bean class="Service.ArticleService"/>
-        </property>
-        <property name="article">
-            <bean class="Model.Article"/>
         </property>
     </bean>
 

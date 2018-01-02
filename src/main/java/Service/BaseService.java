@@ -10,6 +10,7 @@ public interface BaseService<T>
     boolean save(T t);
     boolean update(T t);
     boolean delete(T t);
+    boolean execute(String sql);
     Object get(Class type, Serializable id);
     T getById(Class<T> cls,Serializable id);
     Object load(Class type, Serializable id);

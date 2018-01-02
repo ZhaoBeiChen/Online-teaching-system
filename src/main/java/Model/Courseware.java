@@ -14,14 +14,18 @@ import java.sql.Timestamp;
 public class Courseware
 {
     private int id;
+    private int authorid;
+    private int courseid;
+
     private String name;
     private String content;
     private String path;
-    private int authorid;
+
     private String grade;
     private Timestamp time;
 
     private Teacher teacher;
+    private Course course;
 
     public int getId()
     {
@@ -69,6 +73,14 @@ public class Courseware
         this.authorid = authorid;
     }
 
+    public int getCourseid() {
+        return courseid;
+    }
+
+    public void setCourseid(int courseid) {
+        this.courseid = courseid;
+    }
+
     public String getGrade() {
         return grade;
     }
@@ -91,5 +103,13 @@ public class Courseware
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

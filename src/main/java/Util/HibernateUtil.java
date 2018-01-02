@@ -43,7 +43,7 @@ public class HibernateUtil
             if (trans != null) {
                 trans.commit();
             }
-            if (trans != null) {
+            if (session != null) {
                 session.clear();
                 session.close();
             }

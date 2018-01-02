@@ -8,9 +8,11 @@
         <property name="name"/>  
         <property name="content"/>
         <property name="authorid" insert="false" update="false"/>
+        <property name="courseid" insert="false" update="false"/>
         <property name="grade"/>
         <property name="time"/>
 
-        <many-to-one name="teacher" class="Model.Teacher" column="authorid" cascade="save-update,persist" />
+        <many-to-one name="teacher" class="Model.Teacher" column="authorid" unique="true" />
+        <many-to-one name="course" class="Model.Course" column="courseid" unique="true"/>
     </class>
 </hibernate-mapping>

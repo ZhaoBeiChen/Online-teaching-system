@@ -24,9 +24,14 @@ public class MessageAction extends ActionSupport {
 
     public String add(){
         messageService.init();
-        messageService.setAdd(message);
+        boolean isSuccess = false;
+        isSuccess = messageService.setAdd(message);
         messageService.clear();
-        return SUCCESS;
+        if (isSuccess) {
+            return SUCCESS;
+        }else {
+            return ERROR;
+        }
     }
 
     public String change(){
@@ -36,6 +41,19 @@ public class MessageAction extends ActionSupport {
         ActionContext.getContext().getSession().put("message", message);
         messageService.clear();
         return SUCCESS;
+    }
+
+    public String update(){
+        messageService.init();
+        boolean isSuccess = false;
+        isSuccess = messageService.update(message);
+        messageService.clear();
+        if (isSuccess) {
+            return SUCCESS;
+        }else {
+            return ERROR;
+        }
+
     }
 
 

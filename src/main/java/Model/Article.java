@@ -15,6 +15,7 @@ public class Article
 {
     private int id;
     private int authorid;
+    private int courseid;
 
     private String name;
     private String content;
@@ -23,6 +24,7 @@ public class Article
     private Timestamp time;
 
     private Teacher teacher;
+    private Course course;
 
     public int getId()
     {
@@ -62,6 +64,14 @@ public class Article
         this.authorid = authorid;
     }
 
+    public int getCourseid() {
+        return courseid;
+    }
+
+    public void setCourseid(int courseid) {
+        this.courseid = courseid;
+    }
+
     public String getGrade() {
         return grade;
     }
@@ -84,5 +94,13 @@ public class Article
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

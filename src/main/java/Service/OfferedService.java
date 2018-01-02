@@ -5,7 +5,10 @@ import DAO.BaseDAOImpl;
 import Model.Course;
 import Model.Offered;
 import Model.Teacher;
+import View.JSONCourseView;
+import View.JSONOfferedView;
 import View.OfferedView;
+import com.opensymphony.xwork2.ActionContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,7 @@ public class OfferedService extends BaseServiceImpl<Offered>{
         super.setDao(dao);
     }
 
-    public List<OfferedView> getListViews(String keyword) {
+    public List<OfferedView> getListViews(String keyword, int courseid) {
         if(keyword==null){
             keyword="";
         }
@@ -35,9 +38,59 @@ public class OfferedService extends BaseServiceImpl<Offered>{
                     view.getCourse().getContent().contains(keyword) ||
                     view.getTeacher().getName().contains(keyword) ||
                     view.getTeacher().getEmail().contains(keyword)){
-                offeredViews.add(view);
+                if(courseid==-1||courseid==view.getCourse().getId()) {
+                    offeredViews.add(view);
+                }
             }
         }
         return offeredViews;
+    }
+
+    public List<JSONCourseView> getNames(String keyword) {
+        if(keyword==null){
+            keyword="";
+        }
+        List<Offered> offeredList = getBySQL("from Offered");
+        List<JSONCourseView> courseNames = null;
+        String usertype = (String) ActionContext.getContext().getSession().get("usertype");
+        if(usertype.equals("teacher")) {
+            Teacher teacher = (Teacher) ActionContext.getContext().getSession().get("user");
+            courseNames = new ArrayList<JSONCourseView>();
+            for (Offered o : offeredList) {
+                if (o.getTeacherid() == teacher.getId()) {
+                    Course course = (Course) get(Course.class, o.getCourseid());
+                    JSONCourseView item = new JSONCourseView();
+                    item.setId(course.getId());
+                    item.setName(course.getName());
+                    courseNames.add(item);
+                }
+            }
+        }
+        return courseNames;
+    }
+    public List<JSONOfferedView> getNames() {
+        List<Offered> offeredList = getBySQL("from Offered");
+        List<JSONOfferedView> offeredViews = new ArrayList<JSONOfferedView>();
+        for(Offered o : offeredList){
+            Course course = (Course) get(Course.class,o.getCourseid());
+            Teacher teacher = (Teacher) get(Teacher.class,o.getTeacherid());
+            JSONOfferedView view = new JSONOfferedView();
+            view.setId(o.getId());
+            view.setCourseid(course.getId());
+            view.setCourseName(course.getName());
+            view.setTeacherid(teacher.getId());
+            view.setTeacherName(teacher.getName());
+            offeredViews.add(view);
+            }
+        return offeredViews;
+    }
+
+    public boolean setAdd(Offered offered) {
+        Teacher teacher = (Teacher) load(Teacher.class,offered.getTeacherid());
+        Course course = (Course) load(Course.class,offered.getCourseid());
+        offered.setTeacher(teacher);
+        offered.setCourse(course);
+        save(offered);
+        return true;
     }
 }

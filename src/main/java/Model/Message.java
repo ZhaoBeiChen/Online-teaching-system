@@ -20,6 +20,15 @@ public class Message implements Serializable
     private int authorid;
     private String grade;
     private Timestamp time;
+    private int classid;
+
+    public int getClassid() {
+        return classid;
+    }
+
+    public void setClassid(int classid) {
+        this.classid = classid;
+    }
 
     public int getId()
     {

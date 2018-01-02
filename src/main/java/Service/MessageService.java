@@ -34,13 +34,24 @@ public class MessageService extends BaseServiceImpl<Message> {
         mes.setName(message.getName());
         mes.setGrade(new SimpleDateFormat("yyyy").format(new Date()));
         mes.setTime(new Timestamp(new Date().getTime()));
-        save(mes);
-        return true;
+        if (save(mes)) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public Message get(int id){
         Message message = (Message) get(Message.class, id);
         return message;
+    }
+
+    public boolean update(Message message){
+        if(update(message)){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

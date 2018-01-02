@@ -1,5 +1,6 @@
 package View;
 
+import Model.Course;
 import Model.Teacher;
 
 import java.sql.Timestamp;
@@ -8,7 +9,10 @@ public class ArticleView {
     private int id;
     private String name;
     private String content;
+
     private Teacher teacher;
+    private Course course;
+
     private String grade;
     private Timestamp time;
 
@@ -42,6 +46,14 @@ public class ArticleView {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public String getGrade() {

@@ -47,39 +47,45 @@ public class CommonAction extends ActionSupport
         adminService.clear();
         return "success";
     }
+    public String Logout(){
+        ActionContext.getContext().getSession().remove("username");
+        ActionContext.getContext().getSession().remove("usertype");
+        ActionContext.getContext().getSession().remove("user");
+        return "success";
+    }
     public String Search(){
         SearchView searchView;
         if(condition==null||condition.equals("all")){
             searchView = new SearchView();
             searchView.setCondition("all");
             articleService.init();
-            searchView.setArticleViews(articleService.getListViews(keyword));
+            searchView.setArticleViews(articleService.getListViews(keyword,""));
             articleService.clear();
             coursewareService.init();
-            searchView.setCoursewareViews(coursewareService.getListViews(keyword));
+            searchView.setCoursewareViews(coursewareService.getListViews(keyword,""));
             coursewareService.clear();
             courseService.init();
             searchView.setCourses(courseService.getListViews(keyword));
             courseService.clear();
             offeredService.init();
-            searchView.setOfferedViews(offeredService.getListViews(keyword));
+            searchView.setOfferedViews(offeredService.getListViews(keyword, -1));
             offeredService.clear();
             selectedService.init();
-            searchView.setSelectedViews(selectedService.getListViews(keyword));
+            searchView.setSelectedViews(selectedService.getListViews(keyword, -1));
             selectedService.clear();
         }
         else if(condition.equals("article")){
             searchView = new SearchView();
             searchView.setCondition("article");
             articleService.init();
-            searchView.setArticleViews(articleService.getListViews(keyword));
+            searchView.setArticleViews(articleService.getListViews(keyword,""));
             articleService.clear();
         }
         else if(condition.equals("courseware")){
             searchView = new SearchView();
             searchView.setCondition("courseware");
             coursewareService.init();
-            searchView.setCoursewareViews(coursewareService.getListViews(keyword));
+            searchView.setCoursewareViews(coursewareService.getListViews(keyword,""));
             coursewareService.clear();
         }
         else if(condition.equals("course")){
@@ -89,10 +95,10 @@ public class CommonAction extends ActionSupport
             searchView.setCourses(courseService.getListViews(keyword));
             courseService.clear();
             offeredService.init();
-            searchView.setOfferedViews(offeredService.getListViews(keyword));
+            searchView.setOfferedViews(offeredService.getListViews(keyword, -1));
             offeredService.clear();
             selectedService.init();
-            searchView.setSelectedViews(selectedService.getListViews(keyword));
+            searchView.setSelectedViews(selectedService.getListViews(keyword, -1));
             selectedService.clear();
         }
         else{

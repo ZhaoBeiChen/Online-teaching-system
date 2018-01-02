@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="com.opensymphony.xwork2.ActionContext"%>
+<%@page import="com.opensymphony.xwork2.ActionContext" %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
@@ -20,33 +20,33 @@
     <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
     <script src="js/scripts.js"></script>
 
-    <!-- Bootstrap CSS -->    
+    <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/elegant-icons-style.css" rel="stylesheet"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet"/>
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="css/style-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <script src="js/lte-ie7.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
 <%
-    String username = (String)ActionContext.getContext().getSession().get("username");
-    String usertype = (String)ActionContext.getContext().getSession().get("usertype");
-    if(usertype==null){
-      response.getWriter().print("<script>alert('请先登录!');window.location.href='/login.jsp'</script>");
-      return;
+    String username = (String) ActionContext.getContext().getSession().get("username");
+    String usertype = (String) ActionContext.getContext().getSession().get("usertype");
+    if (usertype == null) {
+        response.getWriter().print("<script>alert('请先登录!');window.location.href='/login.jsp'</script>");
+        return;
     }
 %>
 <!-- container section start -->
@@ -68,13 +68,14 @@
                 <li>
                     <form class="navbar-form" action="Search" method="post">
                         <input name="keyword" class="form-control" placeholder="Search" type="text">
-                        <select name="condition"  class="btn btn-primary selectpicker">
+                        <select name="condition" class="btn btn-primary selectpicker">
                             <option value="all">全部</option>
                             <option value="article">文章</option>
                             <option value="courseware">课件</option>
                             <option value="course">课程相关</option>
                         </select>
-                        <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator" value="搜索"></input>
+                        <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator"
+                               value="搜索"></input>
                     </form>
                 </li>
             </ul>
@@ -131,10 +132,9 @@
                     <ul class="sub">
                         <li><a class="" href="/Articles">查看文章</a></li>
                         <%
-                            if(usertype!=null&&(usertype.equals("teacher")))
-                            {
+                            if (usertype != null && (usertype.equals("teacher"))) {
                         %>
-                            <li><a class="" href="/articlesadd.jsp">添加文章</a></li>
+                        <li><a class="" href="/articlesadd.jsp">添加文章</a></li>
                         <%
                             }
                         %>
@@ -149,10 +149,9 @@
                     <ul class="sub">
                         <li><a class="" href="/Coursewares">查看课件</a></li>
                         <%
-                            if(usertype!=null&&(usertype.equals("teacher")))
-                            {
+                            if (usertype != null && (usertype.equals("teacher"))) {
                         %>
-                            <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
+                        <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
                         <%
                             }
                         %>
@@ -176,10 +175,9 @@
                         <span>已选课程</span>
                     </a>
                 </li>
-                        <%
-                            if(usertype!=null&&(usertype.equals("teacher")))
-                            {
-                        %>
+                <%
+                    if (usertype != null && (usertype.equals("teacher"))) {
+                %>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_table"></i>
@@ -192,7 +190,7 @@
                     </ul>
                 </li>
                 <%
-                }
+                    }
                 %>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
@@ -214,82 +212,93 @@
     </aside>
     <!--sidebar end-->
 
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper">
-		  <div class="row">
-				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
-					<ol class="breadcrumb">
-						<li><i class="fa fa-home"></i><a href="index.jsp">Home</a></li>
-						<li><i class="fa fa-bars"></i>Pages</li>
-						<li><i class="fa fa-square-o"></i>Pages</li>
-					</ol>
-				</div>
-			</div>
-              <!-- page start-->
-  <div class="row">
-                  <div class="col-lg-12">
-                      <section class="panel">
-                          <header class="panel-heading">
-                             添加文章
-                          </header>
-                          <div class="panel-body">
-                          <script>
-                            $(document).ready(function(){
-                                $.get("/JSONCourses",function(data,status){
-                                var length=0;
-                                for(var key in data.courseNames){
-                                   length++;
-                                }
-                                if(length==0){
-                                    alert("暂时没有您的开课信息，无法添加文章！");
-                                    window.location.href="/Articles";
-                                    }
-                                for(var course in data.courseNames){
-                                    $("#courseid").append("<option value='"+data.courseNames[course].id+"'>"+data.courseNames[course].name+"</option>");
-                                }
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="index.jsp">Home</a></li>
+                        <li><i class="fa fa-bars"></i>Pages</li>
+                        <li><i class="fa fa-square-o"></i>Pages</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            添加开课
+                        </header>
+                        <div class="panel-body">
+                            <script>
+                                $(document).ready(function () {
+                                    $.get("/JSONCourses", function (data, status) {
+                                        for (var course in data.courseNames) {
+                                            $("#courseid").append("<option value='" + data.courseNames[course].id + "'>" + data.courseNames[course].name + "</option>");
+                                        }
+                                    });
+                                    $.get("/JSONTeachers", function (data, status) {
+                                        for (var teacher in data.teacherNames) {
+                                            $("#teacherid").append("<option value='" + data.teacherNames[teacher].id + "'>" + data.teacherNames[teacher].name + "</option>");
+                                        }
+                                    });
                                 });
-                            });
-                          </script>
-                              <div class="form">
-                                  <form class="form-validate form-horizontal " id="register_form" action="ArticlesAdd" method="post" >
-                                      <div class="form-group ">
-                                          <label for="name" class="control-label col-lg-2">相关课程 <span class="required">*</span></label>
-                                          <div class="col-lg-10">
-                                              <select class=" form-control" id="courseid" name="article.courseid" type="text" >
-                                              </select>
-                                          </div>
-                                      </div>
-                                      <div class="form-group ">
-                                          <label for="name" class="control-label col-lg-2">文章标题 <span class="required">*</span></label>
-                                          <div class="col-lg-10">
-                                              <input class=" form-control" id="name" name="article.name" type="text" />
-                                          </div>
-                                      </div>
-                                      <div class="form-group ">
-                                          <label for="content" class="control-label col-lg-2">文章内容<span class="required">*</span></label>
-                                          <div class="col-lg-10">
-                                              <textarea class="form-control " id="content" name="article.content" type="text" style="resize:none;height:260px;" ></textarea>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <div class="col-lg-offset-2 col-lg-10">
-                                              <button class="btn btn-primary" type="submit">添加</button>
-                                              <button class="btn btn-default" type="button">取消</button>
-                                          </div>
-                                      </div>
-                                  </form>
-                              </div>
-                          </div>
-                      </section>
-                  </div>
-              </div>
-              <!-- page end-->
-          </section>
-      </section>
-      <!--main content end-->
-  </section>
-  <!-- container section end -->
-  </body>
+                            </script>
+                            <div class="form">
+                                <form class="form-validate form-horizontal " id="register_form" action="OfferedAdd"
+                                      method="post">
+                                    <div class="form-group ">
+                                        <label for="courseid" class="control-label col-lg-2">课程名称 <span
+                                                class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select class=" form-control" id="courseid" name="offered.courseid"
+                                                    type="text">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="teacherid" class="control-label col-lg-2">开课教师<span
+                                                class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <select class=" form-control" id="teacherid" name="offered.teacherid"
+                                                    type="text">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="datestart" class="control-label col-lg-2">开课日期<span
+                                                class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input type="date" id="datestart" name="offered.datestart"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="dateend" class="control-label col-lg-2">结课日期<span
+                                                class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input type="date" id="dateend" name="offered.dateend"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-primary" type="submit">添加</button>
+                                            <button class="btn btn-default" type="button">取消</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+</body>
 </html>

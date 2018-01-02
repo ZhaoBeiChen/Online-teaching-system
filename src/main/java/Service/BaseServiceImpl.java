@@ -47,6 +47,10 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>
     {
         return dao.delete(t);
     }
+    @Override
+    public boolean execute(String sql){
+        return dao.execute(sql);
+    }
 
     public Object get(Class type, Serializable id)
     {

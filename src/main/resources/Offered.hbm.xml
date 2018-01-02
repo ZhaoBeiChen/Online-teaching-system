@@ -9,8 +9,8 @@
         <property name="teacherid"  insert="false" update="false" />
         <property name="datestart"/>
         <property name="dateend"/>
-        <many-to-one name="course" class="Model.Course" column="courseid"   />
-        <many-to-one name="teacher" class="Model.Teacher" column="teacherid"  />
+        <many-to-one name="course" class="Model.Course" column="courseid" />
+        <many-to-one name="teacher" class="Model.Teacher" column="teacherid" />
 
     </class>
 </hibernate-mapping>

@@ -15,10 +15,18 @@
             <result name="success">/index.jsp</result>
             <result name="fail">/login.jsp</result>
         </action>
+        <action name="Index" class="CommonAction" method="Index">
+            <result name="success">/index.jsp</result>
+            <result name="fail">/login.jsp</result>
+        </action>
     </package>
     <package name="common" namespace="/" extends="struts-default">
         <action name="Login" class="CommonAction" method="Login">
             <result name="success">/index.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="Logout" class="CommonAction" method="Logout">
+            <result name="success">/login.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
         <action name="Search" class="CommonAction" method="Search">
@@ -31,6 +39,32 @@
             <result name="success">/courses.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
+        <action name="CoursesAdd" class="CourseAction" method="Add">
+            <result name="success" type="redirectAction">Courses</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="CoursesDelete" class="CourseAction" method="Delete">
+            <result name="success" type="redirectAction">Courses</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+    </package>
+    <package name="jsons" namespace="/" extends="json-default">
+        <action name="JSONCourses" class="CourseAction" method="JSONCourses">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="JSONClasses" class="ClassAction" method="JSONClasses">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="JSONOffereds" class="OfferedAction" method="JSONOffereds">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="JSONTeachers" class="TeacherAction" method="JSONTeachers">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
     </package>
     <package name="courseware" namespace="/" extends="struts-default">
         <action name="Coursewares" class="CoursewareAction" method="Show">
@@ -38,11 +72,22 @@
             <result name="fail">/404.jsp</result>
         </action>
         <action name="CoursewaresAdd" class="CoursewareAction" method="Add">
+            <interceptor-ref name="defaultStack">
+                <param name="fileUpload.maximumSize">500000000</param>
+                <param name="fileUpload.allowedTypes">text/plain,application/vnd.ms-powerpoint,application/vnd.ms-excel,application/msword</param>
+                <param name="fileUpload.allowedExtensions">.txt,.ppt,.pptx,.doc,.docx</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">Coursewares</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="CoursewaresDelete" class="CoursewareAction" method="Delete">
             <result name="success" type="redirectAction">Coursewares</result>
             <result name="fail">/404.jsp</result>
         </action>
         <action name="CoursewaresDownload" class="CoursewareAction" method="Download">
-            <result name="success">
+            <result name="success" type="stream">
+                <param name="inputName">fileInput</param>
+                <param name="contentDisposition">attachment;filename="${fileFileName}"</param>
             </result>
             <result name="fail">/404.jsp</result>
         </action>
@@ -52,10 +97,26 @@
             <result name="success">/offered.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
+        <action name="OfferedAdd" class="OfferedAction" method="Add">
+            <result name="success" type="redirectAction">Offered</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="OfferedDelete" class="OfferedAction" method="Delete">
+            <result name="success" type="redirectAction">Offered</result>
+            <result name="fail">/404.jsp</result>
+        </action>
     </package>
     <package name="selected" namespace="/" extends="struts-default">
         <action name="Selected" class="SelectedAction" method="Show">
             <result name="success">/selected.jsp</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="SelectedAdd" class="SelectedAction" method="Add">
+            <result name="success" type="redirectAction">Selected</result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="SelectedDelete" class="SelectedAction" method="Delete">
+            <result name="success" type="redirectAction">Selected</result>
             <result name="fail">/404.jsp</result>
         </action>
     </package>
@@ -68,8 +129,16 @@
             <result name="success" type="redirectAction">Articles</result>
             <result name="fail">/404.jsp</result>
         </action>
+        <action name="ArticlesDelete" class="ArticleAction" method="Delete">
+            <result name="success" type="redirectAction">Articles</result>
+            <result name="fail">/404.jsp</result>
+        </action>
     </package>
     <package name="message" namespace="/" extends="struts-default">
+        <action name="UpdateMessage" class="MessageAction" method="update">
+            <result name="success">/messageList.jsp</result>
+            <result name="error">/404.jsp</result>
+        </action>
         <action name="ChangeMessage" class="MessageAction" method="change">
             <result name="success">/messageChange.jsp</result>
             <result name="error">/404.jsp</result>

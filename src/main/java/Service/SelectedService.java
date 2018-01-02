@@ -16,7 +16,7 @@ public class SelectedService  extends BaseServiceImpl<Selected>{
         super.setDao(dao);
     }
 
-    public List<SelectedView> getListViews(String keyword) {
+    public List<SelectedView> getListViews(String keyword, int classid) {
         List<Selected> selectedList = null;
         String usertype = (String) ActionContext.getContext().getSession().get("usertype");
         if(usertype==null){
@@ -44,10 +44,20 @@ public class SelectedService  extends BaseServiceImpl<Selected>{
                     view.getOffered().getCourse().getContent().contains(keyword) ||
                     view.getOffered().getTeacher().getName().contains(keyword) ||
                     view.getOffered().getTeacher().getEmail().contains(keyword)){
-                selectedViews.add(view);
+                if(classid==-1||classid==view.getClass1().getId()) {
+                    selectedViews.add(view);
+                }
             }
         }
         return selectedViews;
     }
 
+    public boolean setAdd(Selected selected) {
+        Offered offered = (Offered) load(Offered.class,selected.getOfferedid());
+        Class class0 = (Class) load(Class.class,selected.getClassid());
+        selected.setOffered(offered);
+        selected.setClass0(class0);
+        save(selected);
+        return true;
+    }
 }

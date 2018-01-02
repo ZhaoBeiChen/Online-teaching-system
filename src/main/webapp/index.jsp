@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="java.util.List"%>
-<%@page import="Model.Course"%>
-<%@page import="com.opensymphony.xwork2.ActionContext"%>
+<%@page import="java.util.List" %>
+<%@page import="Model.Course" %>
+<%@page import="com.opensymphony.xwork2.ActionContext" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>网上教学系统</title>
+    <title>Creative - Bootstrap Admin Template</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -48,8 +48,12 @@
 
 <body>
 <%
-    String username = (String)ActionContext.getContext().getSession().get("username");
-    String usertype = (String)ActionContext.getContext().getSession().get("usertype");
+    String username = (String) ActionContext.getContext().getSession().get("username");
+    String usertype = (String) ActionContext.getContext().getSession().get("usertype");
+    if (usertype == null) {
+        response.getWriter().print("<script>alert('请先登录!');window.location.href='/login.jsp'</script>");
+        return;
+    }
 %>
 <!-- container section start -->
 <section id="container" class="">
@@ -61,7 +65,7 @@
         </div>
 
         <!--logo start-->
-        <a href="index.jsp" class="logo">网上教学 <span class="lite">系统</span></a>
+        <a href="/Index" class="logo">网上教学 <span class="lite">系统</span></a>
         <!--logo end-->
 
         <div class="nav search-row" id="top_menu">
@@ -70,13 +74,14 @@
                 <li>
                     <form class="navbar-form" action="Search" method="post">
                         <input name="keyword" class="form-control" placeholder="Search" type="text">
-                        <select name="condition"  class="btn btn-primary selectpicker">
+                        <select name="condition" class="btn btn-primary selectpicker">
                             <option value="all">全部</option>
                             <option value="article">文章</option>
                             <option value="courseware">课件</option>
                             <option value="course">课程相关</option>
                         </select>
-                        <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator" value="搜索"></input>
+                        <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator"
+                               value="搜索"></input>
                     </form>
                 </li>
             </ul>
@@ -86,8 +91,8 @@
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
             <ul class="nav pull-right top-menu">
-
-
+                <!-- alert notification end-->
+                <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
@@ -101,24 +106,9 @@
                         <li class="eborder-top">
                             <a href="personalInformation.jsp"><i class="icon_profile"></i> 我的资料</a>
                         </li>
-                        <%--<li>--%>
-                            <%--<a href="#"><i class="icon_mail_alt"></i> My Inbox</a>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                            <%--<a href="#"><i class="icon_clock_alt"></i> Timeline</a>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                            <%--<a href="#"><i class="icon_chat_alt"></i> Chats</a>--%>
-                        <%--</li>--%>
                         <li>
-                            <a href="login.jsp"><i class="icon_key_alt"></i> 登出</a>
+                            <a href="/Logout"><i class="icon_key_alt"></i> 登出</a>
                         </li>
-                        <%--<li>--%>
-                            <%--<a href="documentation.jsp"><i class="icon_key_alt"></i> Documentation</a>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                            <%--<a href="documentation.jsp"><i class="icon_key_alt"></i> Documentation</a>--%>
-                        <%--</li>--%>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -134,7 +124,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="active">
-                    <a class="" href="index.jsp">
+                    <a class="" href="/Index">
                         <i class="icon_house_alt"></i>
                         <span>首页</span>
                     </a>
@@ -148,10 +138,9 @@
                     <ul class="sub">
                         <li><a class="" href="/Articles">查看文章</a></li>
                         <%
-                            if(usertype!=null&&(usertype.equals("teacher")||usertype.equals("admin")))
-                            {
+                            if (usertype != null && (usertype.equals("teacher"))) {
                         %>
-                            <li><a class="" href="/articlesadd.jsp">添加文章</a></li>
+                        <li><a class="" href="/articlesadd.jsp">添加文章</a></li>
                         <%
                             }
                         %>
@@ -166,33 +155,68 @@
                     <ul class="sub">
                         <li><a class="" href="/Coursewares">查看课件</a></li>
                         <%
-                            if(usertype!=null&&(usertype.equals("teacher")||usertype.equals("admin")))
-                            {
+                            if (usertype != null && (usertype.equals("teacher"))) {
                         %>
-                            <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
+                        <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
                         <%
                             }
                         %>
                     </ul>
                 </li>
-                <li>
-                    <a class="" href="/Courses">
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                         <i class="icon_genius"></i>
                         <span>课程信息</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
+                    <ul class="sub">
+                        <li><a class="" href="/Courses">查看课程</a></li>
+                        <%
+                            if (usertype != null && (usertype.equals("admin"))) {
+                        %>
+                        <li><a class="" href="coursesadd.jsp">添加课程</a></li>
+                        <%
+                            }
+                        %>
+                    </ul>
                 </li>
-                <li>
-                    <a class="" href="/Offered"><!--chart-chartjs.jsp-->
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                         <i class="icon_piechart"></i>
                         <span>开课信息</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
+                    <ul class="sub">
+                        <li><a class="" href="/Offered">查看开课</a></li>
+                        <%
+                            if (usertype != null && (usertype.equals("admin"))) {
+                        %>
+                        <li><a class="" href="offeredadd.jsp">添加开课</a></li>
+                        <%
+                            }
+                        %>
+                    </ul>
                 </li>
-                <li>
-                    <a class="" href="/Selected"><!--chart-chartjs.jsp-->
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                         <i class="icon_table"></i>
                         <span>已选课程</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
+                    <ul class="sub">
+                        <li><a class="" href="/Selected">查看已选</a></li>
+                        <%
+                            if (usertype != null && (usertype.equals("admin"))) {
+                        %>
+                        <li><a class="" href="selectedadd.jsp">添加已选</a></li>
+                        <%
+                            }
+                        %>
+                    </ul>
                 </li>
+                <%
+                    if (usertype != null && (usertype.equals("teacher"))) {
+                %>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_table"></i>
@@ -201,22 +225,24 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" href="publishMessage.jsp">发布消息</a></li>
-                        <li><a class="" href="MessageList">消息列表</a></li>
+                        <li><a class="" href="changeMessage.jsp">消息列表</a></li>
                     </ul>
                 </li>
-
+                <%
+                    }
+                %>
                 <%--<li class="sub-menu">--%>
-                    <%--<a href="javascript:;" class="">--%>
-                        <%--<i class="icon_documents_alt"></i>--%>
-                        <%--<span>Pages</span>--%>
-                        <%--<span class="menu-arrow arrow_carrot-right"></span>--%>
-                    <%--</a>--%>
-                    <%--<ul class="sub">--%>
-                        <%--<li><a class="" href="profile.jsp">Profile</a></li>--%>
-                        <%--<li><a class="" href="login.jsp"><span>Login Page</span></a></li>--%>
-                        <%--<li><a class="" href="blank.jsp">Blank Page</a></li>--%>
-                        <%--<li><a class="" href="404.jsp">404 Error</a></li>--%>
-                    <%--</ul>--%>
+                <%--<a href="javascript:;" class="">--%>
+                <%--<i class="icon_documents_alt"></i>--%>
+                <%--<span>Pages</span>--%>
+                <%--<span class="menu-arrow arrow_carrot-right"></span>--%>
+                <%--</a>--%>
+                <%--<ul class="sub">--%>
+                <%--<li><a class="" href="profile.jsp">Profile</a></li>--%>
+                <%--<li><a class="" href="login.jsp"><span>Login Page</span></a></li>--%>
+                <%--<li><a class="" href="blank.jsp">Blank Page</a></li>--%>
+                <%--<li><a class="" href="404.jsp">404 Error</a></li>--%>
+                <%--</ul>--%>
                 <%--</li>--%>
 
             </ul>
@@ -273,14 +299,14 @@
                 </div><!--/.col-->
 
 
-
             </div><!--/.row-->
 
             <div class="panel-group m-bot20" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseOne">
                                 XX老师关于XX课程的公告 发布于XXXX年XX月XX日 XX时XX分
                             </a>
                         </h4>
@@ -294,7 +320,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseTwo">
                                 XX老师关于XX课程的公告 发布于XXXX年XX月XX日 XX时XX分
                             </a>
                         </h4>
@@ -308,7 +335,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseThree">
                                 XX老师关于XX课程的公告 发布于XXXX年XX月XX日 XX时XX分
                             </a>
                         </h4>
@@ -814,97 +842,97 @@
             <div class="row">
                 <div class="col-md-6 portlets">
                     <%--<div class="panel panel-default">--%>
-                        <%--<div class="panel-heading">--%>
-                            <%--<h2><strong>Calendar</strong></h2>--%>
-                            <%--<div class="panel-actions">--%>
-                                <%--<a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>--%>
-                                <%--<a href="#" class="wclose"><i class="fa fa-times"></i></a>--%>
-                            <%--</div>--%>
+                    <%--<div class="panel-heading">--%>
+                    <%--<h2><strong>Calendar</strong></h2>--%>
+                    <%--<div class="panel-actions">--%>
+                    <%--<a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>--%>
+                    <%--<a href="#" class="wclose"><i class="fa fa-times"></i></a>--%>
+                    <%--</div>--%>
 
-                        <%--</div>--%>
-                        <%--<br><br><br>--%>
-                        <%--<div class="panel-body">--%>
-                            <%--<!-- Widget content -->--%>
+                    <%--</div>--%>
+                    <%--<br><br><br>--%>
+                    <%--<div class="panel-body">--%>
+                    <%--<!-- Widget content -->--%>
 
-                            <%--<!-- Below line produces calendar. I am using FullCalendar plugin. -->--%>
-                            <%--<div id="calendar"></div>--%>
+                    <%--<!-- Below line produces calendar. I am using FullCalendar plugin. -->--%>
+                    <%--<div id="calendar"></div>--%>
 
-                        <%--</div>--%>
+                    <%--</div>--%>
                     <%--</div>--%>
 
                 </div>
 
                 <div class="col-md-6 portlets">
                     <%--<div class="panel panel-default">--%>
-                        <%--<div class="panel-heading">--%>
-                            <%--<div class="pull-left">Quick Post</div>--%>
-                            <%--<div class="widget-icons pull-right">--%>
-                                <%--<a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>--%>
-                                <%--<a href="#" class="wclose"><i class="fa fa-times"></i></a>--%>
-                            <%--</div>--%>
-                            <%--<div class="clearfix"></div>--%>
-                        <%--</div>--%>
-                        <%--<div class="panel-body">--%>
-                            <%--<div class="padd">--%>
+                    <%--<div class="panel-heading">--%>
+                    <%--<div class="pull-left">Quick Post</div>--%>
+                    <%--<div class="widget-icons pull-right">--%>
+                    <%--<a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>--%>
+                    <%--<a href="#" class="wclose"><i class="fa fa-times"></i></a>--%>
+                    <%--</div>--%>
+                    <%--<div class="clearfix"></div>--%>
+                    <%--</div>--%>
+                    <%--<div class="panel-body">--%>
+                    <%--<div class="padd">--%>
 
-                                <%--<div class="form quick-post">--%>
-                                    <%--<!-- Edit profile form (not working)-->--%>
-                                    <%--<form class="form-horizontal">--%>
-                                        <%--<!-- Title -->--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label class="control-label col-lg-2" for="title">Title</label>--%>
-                                            <%--<div class="col-lg-10">--%>
-                                                <%--<input type="text" class="form-control" id="title">--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--<!-- Content -->--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label class="control-label col-lg-2" for="content">Content</label>--%>
-                                            <%--<div class="col-lg-10">--%>
-                                                <%--<textarea class="form-control" id="content"></textarea>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--<!-- Cateogry -->--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label class="control-label col-lg-2">Category</label>--%>
-                                            <%--<div class="col-lg-10">--%>
-                                                <%--<select class="form-control">--%>
-                                                    <%--<option value="">- Choose Cateogry -</option>--%>
-                                                    <%--<option value="1">General</option>--%>
-                                                    <%--<option value="2">News</option>--%>
-                                                    <%--<option value="3">Media</option>--%>
-                                                    <%--<option value="4">Funny</option>--%>
-                                                <%--</select>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--<!-- Tags -->--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<label class="control-label col-lg-2" for="tags">Tags</label>--%>
-                                            <%--<div class="col-lg-10">--%>
-                                                <%--<input type="text" class="form-control" id="tags">--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
+                    <%--<div class="form quick-post">--%>
+                    <%--<!-- Edit profile form (not working)-->--%>
+                    <%--<form class="form-horizontal">--%>
+                    <%--<!-- Title -->--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label class="control-label col-lg-2" for="title">Title</label>--%>
+                    <%--<div class="col-lg-10">--%>
+                    <%--<input type="text" class="form-control" id="title">--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<!-- Content -->--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label class="control-label col-lg-2" for="content">Content</label>--%>
+                    <%--<div class="col-lg-10">--%>
+                    <%--<textarea class="form-control" id="content"></textarea>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<!-- Cateogry -->--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label class="control-label col-lg-2">Category</label>--%>
+                    <%--<div class="col-lg-10">--%>
+                    <%--<select class="form-control">--%>
+                    <%--<option value="">- Choose Cateogry -</option>--%>
+                    <%--<option value="1">General</option>--%>
+                    <%--<option value="2">News</option>--%>
+                    <%--<option value="3">Media</option>--%>
+                    <%--<option value="4">Funny</option>--%>
+                    <%--</select>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<!-- Tags -->--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label class="control-label col-lg-2" for="tags">Tags</label>--%>
+                    <%--<div class="col-lg-10">--%>
+                    <%--<input type="text" class="form-control" id="tags">--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
 
-                                        <%--<!-- Buttons -->--%>
-                                        <%--<div class="form-group">--%>
-                                            <%--<!-- Buttons -->--%>
-                                            <%--<div class="col-lg-offset-2 col-lg-9">--%>
-                                                <%--<button type="submit" class="btn btn-primary">Publish</button>--%>
-                                                <%--<button type="submit" class="btn btn-danger">Save Draft</button>--%>
-                                                <%--<button type="reset" class="btn btn-default">Reset</button>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                    <%--</form>--%>
-                                <%--</div>--%>
+                    <%--<!-- Buttons -->--%>
+                    <%--<div class="form-group">--%>
+                    <%--<!-- Buttons -->--%>
+                    <%--<div class="col-lg-offset-2 col-lg-9">--%>
+                    <%--<button type="submit" class="btn btn-primary">Publish</button>--%>
+                    <%--<button type="submit" class="btn btn-danger">Save Draft</button>--%>
+                    <%--<button type="reset" class="btn btn-default">Reset</button>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--</form>--%>
+                    <%--</div>--%>
 
 
-                            <%--</div>--%>
-                            <%--<div class="widget-foot">More Templates <a href="http://www.cssmoban.com/" target="_blank"--%>
-                                                                       <%--title="模板之家">模板之家</a> - Collect from <a--%>
-                                    <%--href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>--%>
-                                <%--<!-- Footer goes here -->--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="widget-foot">More Templates <a href="http://www.cssmoban.com/" target="_blank"--%>
+                    <%--title="模板之家">模板之家</a> - Collect from <a--%>
+                    <%--href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>--%>
+                    <%--<!-- Footer goes here -->--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
                     <%--</div>--%>
 
                 </div>

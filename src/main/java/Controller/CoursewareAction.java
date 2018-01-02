@@ -13,6 +13,7 @@ public class CoursewareAction extends ActionSupport {
     private CoursewareService coursewareService;
     //private Courseware courseware;
     private int id;
+    private int courseid = -1;
     private String name;
     private String content;
     private File file;
@@ -21,20 +22,35 @@ public class CoursewareAction extends ActionSupport {
 
     public String Show() {
         coursewareService.init();
-        List<CoursewareView> coursewareViews = coursewareService.getListViews("");
+        String condition = null;
+        if(courseid<=-1){
+            condition = "";
+        }
+        else{
+            condition = "where courseid="+courseid;
+        }
+        ActionContext.getContext().getSession().remove("coursewareViews");
+        List<CoursewareView> coursewareViews = coursewareService.getListViews("",condition);
         ActionContext.getContext().getSession().put("coursewareViews", coursewareViews);
         coursewareService.clear();
+        courseid = -1;
         return "success";
     }
 
     public String Add() {
         coursewareService.init();
         try {
-            coursewareService.setAdd(name, content, file, fileFileName);
+            coursewareService.setAdd(name, content,courseid, file, fileFileName);
         } catch (IOException e) {
             e.printStackTrace();
             return "fail";
         }
+        coursewareService.clear();
+        return "success";
+    }
+    public String Delete(){
+        coursewareService.init();
+        coursewareService.delete(coursewareService.getById(Courseware.class,id));
         coursewareService.clear();
         return "success";
     }
@@ -43,7 +59,12 @@ public class CoursewareAction extends ActionSupport {
         Courseware courseware = coursewareService.getById(Courseware.class,id);
         String filePath = courseware.getPath();
         this.setFile(new File(filePath));
-        this.setFileFileName(file.getName());
+        try {
+            this.setFileFileName(new String(file.getName().getBytes("utf-8"),"ISO8859-1"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return "fail";
+        }
         System.out.println(fileFileName);
         try {
             fileInput = new FileInputStream(file);
@@ -96,6 +117,14 @@ public class CoursewareAction extends ActionSupport {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCourseid() {
+        return courseid;
+    }
+
+    public void setCourseid(int courseid) {
+        this.courseid = courseid;
     }
 
     public void setName(String name) {

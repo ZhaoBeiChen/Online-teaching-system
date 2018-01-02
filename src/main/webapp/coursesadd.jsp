@@ -232,45 +232,21 @@
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                             添加文章
+                             添加课程
                           </header>
                           <div class="panel-body">
-                          <script>
-                            $(document).ready(function(){
-                                $.get("/JSONCourses",function(data,status){
-                                var length=0;
-                                for(var key in data.courseNames){
-                                   length++;
-                                }
-                                if(length==0){
-                                    alert("暂时没有您的开课信息，无法添加文章！");
-                                    window.location.href="/Articles";
-                                    }
-                                for(var course in data.courseNames){
-                                    $("#courseid").append("<option value='"+data.courseNames[course].id+"'>"+data.courseNames[course].name+"</option>");
-                                }
-                                });
-                            });
-                          </script>
                               <div class="form">
-                                  <form class="form-validate form-horizontal " id="register_form" action="ArticlesAdd" method="post" >
+                                  <form class="form-validate form-horizontal " id="register_form" action="CoursesAdd" method="post" >
                                       <div class="form-group ">
-                                          <label for="name" class="control-label col-lg-2">相关课程 <span class="required">*</span></label>
+                                          <label for="name" class="control-label col-lg-2">课程名称 <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <select class=" form-control" id="courseid" name="article.courseid" type="text" >
-                                              </select>
+                                              <input class=" form-control" id="name" name="course.name" type="text" />
                                           </div>
                                       </div>
                                       <div class="form-group ">
-                                          <label for="name" class="control-label col-lg-2">文章标题 <span class="required">*</span></label>
+                                          <label for="content" class="control-label col-lg-2">课程介绍<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class=" form-control" id="name" name="article.name" type="text" />
-                                          </div>
-                                      </div>
-                                      <div class="form-group ">
-                                          <label for="content" class="control-label col-lg-2">文章内容<span class="required">*</span></label>
-                                          <div class="col-lg-10">
-                                              <textarea class="form-control " id="content" name="article.content" type="text" style="resize:none;height:260px;" ></textarea>
+                                              <textarea class="form-control " id="content" name="course.content" type="text" style="resize:none;height:260px;" ></textarea>
                                           </div>
                                       </div>
                                       <div class="form-group">

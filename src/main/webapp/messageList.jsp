@@ -413,6 +413,7 @@
                     <tr>
                         <th><i class="icon_profile"></i> 标题</th>
                         <th><i class="icon_calendar"></i> 内容</th>
+                        <th><i class="icon_mail_alt"></i> 班级</th>
                         <th><i class="icon_mail_alt"></i> 发布时间</th>
                         <th><i class="icon_mail_alt"></i> 操作</th>
                     </tr>
@@ -426,6 +427,7 @@
                     <tr>
                         <td><%=temp.getName()%></td>
                         <td><%=temp.getContent()%></td>
+                        <td><%=temp.getClassid()%></td>
                         <td><%=time%></td>
                         <td>
                             <div class="btn-group">

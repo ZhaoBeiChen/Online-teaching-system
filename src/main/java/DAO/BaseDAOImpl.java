@@ -65,6 +65,18 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     }
 
     @Override
+    public boolean execute(String sql) {
+        try{
+            HU.getSession().createQuery(sql).executeUpdate();
+            return true;
+        }
+        catch(HibernateException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public Object get(Class type, Serializable id)
     {
         return HU.getSession().get(type, id);
