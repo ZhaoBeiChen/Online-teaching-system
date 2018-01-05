@@ -228,19 +228,6 @@
                 <%
                     }
                 %>
-                <%--<li class="sub-menu">--%>
-                <%--<a href="javascript:;" class="">--%>
-                <%--<i class="icon_documents_alt"></i>--%>
-                <%--<span>Pages</span>--%>
-                <%--<span class="menu-arrow arrow_carrot-right"></span>--%>
-                <%--</a>--%>
-                <%--<ul class="sub">--%>
-                <%--<li><a class="" href="profile.jsp">Profile</a></li>--%>
-                <%--<li><a class="" href="login.jsp"><span>Login Page</span></a></li>--%>
-                <%--<li><a class="" href="blank.jsp">Blank Page</a></li>--%>
-                <%--<li><a class="" href="404.jsp">404 Error</a></li>--%>
-                <%--</ul>--%>
-                <%--</li>--%>
 
             </ul>
             <!-- sidebar menu end-->

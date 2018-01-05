@@ -18,6 +18,7 @@ public class SelectedService  extends BaseServiceImpl<Selected>{
 
     public List<SelectedView> getListViews(String keyword, int classid) {
         List<Selected> selectedList = null;
+        Teacher currentTeacher = null;
         String usertype = (String) ActionContext.getContext().getSession().get("usertype");
         if(usertype==null){
             return null;
@@ -25,6 +26,10 @@ public class SelectedService  extends BaseServiceImpl<Selected>{
         else if(usertype.equals("student")){
             Student student = (Student) ActionContext.getContext().getSession().get("user");
             selectedList = getBySQL("from Selected where classid="+student.getClassid());
+        }
+        else if(usertype.equals("teacher")){
+            currentTeacher = (Teacher) ActionContext.getContext().getSession().get("user");
+            selectedList = getBySQL("from Selected");
         }
         else {
             selectedList = getBySQL("from Selected");
@@ -45,7 +50,14 @@ public class SelectedService  extends BaseServiceImpl<Selected>{
                     view.getOffered().getTeacher().getName().contains(keyword) ||
                     view.getOffered().getTeacher().getEmail().contains(keyword)){
                 if(classid==-1||classid==view.getClass1().getId()) {
-                    selectedViews.add(view);
+                    if(usertype.equals("teacher")){
+                        if(view.getOffered().getTeacher().getId()==currentTeacher.getId()){
+                            selectedViews.add(view);
+                        }
+                    }
+                    else {
+                        selectedViews.add(view);
+                    }
                 }
             }
         }

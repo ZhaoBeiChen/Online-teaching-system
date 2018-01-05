@@ -23,7 +23,7 @@
     <package name="common" namespace="/" extends="struts-default">
         <action name="Login" class="CommonAction" method="Login">
             <result name="success">/index.jsp</result>
-            <result name="fail">/404.jsp</result>
+            <result name="fail">/login.jsp?msg="用户名或密码错误！"</result>
         </action>
         <action name="Logout" class="CommonAction" method="Logout">
             <result name="success">/login.jsp</result>

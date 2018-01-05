@@ -35,11 +35,6 @@ public class ClassAction extends ActionSupport{
         classService.clear();
         return SUCCESS;
     }
-
-    public ClassService getClassService() {
-        return classService;
-    }
-
     public void setClassService(ClassService classService) {
         this.classService = classService;
     }

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,14 @@
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>我的资料 - 网上教学系统</title>
+
+    <!-- javascripts -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- nice scroll -->
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
+    <script src="js/scripts.js"></script>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -229,7 +238,6 @@
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.jsp">首页</a></li>
                         <li><i class="fa fa-bars"></i>我的资料</li>
-                        <%--<li><i class="fa fa-square-o"></i>Pages</li>--%>
                     </ol>
                 </div>
             </div>
@@ -249,9 +257,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">用户名</label>
+                                    <label class="col-lg-2 control-label">用户名：</label>
                                     <div class="col-lg-10">
-                                        <p class="form-control-static">张全蛋</p>
+                                        <p class="form-control-static"><%=username%></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -261,21 +269,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">性别：</label>
+                                    <label class="col-lg-2 control-label">用户类型：</label>
                                     <div class="col-lg-10">
-                                        <p class="form-control-static">email@example.com</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">生日：</label>
-                                    <div class="col-lg-10">
-                                        <p class="form-control-static">email@example.com</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">专业：</label>
-                                    <div class="col-lg-10">
-                                        <p class="form-control-static">email@example.com</p>
+                                        <p class="form-control-static">
+                                        <%=usertype.equals("admin")?"管理员":usertype.equals("teacher")?"教师":"学生"%>
+                                        </p>
                                     </div>
                                 </div>
                             </form>
@@ -283,7 +281,7 @@
                     </section>
                     <section class="panel">
                         <div class="panel-body">
-                            <button type="button" class="btn btn-success btn-block">修改资料</button>
+                            <button type="button" disabled="true" class="btn btn-success btn-block">修改资料</button>
                         </div>
                     </section>
                 </div>
@@ -294,13 +292,6 @@
     <!--main content end-->
 </section>
 <!-- container section end -->
-<!-- javascripts -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- nice scroll -->
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
-<script src="js/scripts.js"></script>
 
 
 </body>
