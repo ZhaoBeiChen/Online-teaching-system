@@ -3,6 +3,7 @@
 <%@ page import="com.opensymphony.xwork2.ActionContext" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="org.apache.struts2.ServletActionContext" %>
+<%@ page import="View.MessageView" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -418,16 +419,16 @@
                         <th><i class="icon_mail_alt"></i> 操作</th>
                     </tr>
                     <%
-                        List<Message> messageList = (List<Message>) ServletActionContext.getRequest().getAttribute("messageView");
+                        List<MessageView> messageList = (List<MessageView>) ActionContext.getContext().getSession().get("messageViewList");
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                        for (Message temp : messageList){
-                            String time = sdf.format(temp.getTime());
+                        for (MessageView temp : messageList){
+                            String time = sdf.format(temp.getTimestamp());
                     %>
 
                     <tr>
                         <td><%=temp.getName()%></td>
                         <td><%=temp.getContent()%></td>
-                        <td><%=temp.getClassid()%></td>
+                        <td><%=temp.getClassName()%></td>
                         <td><%=time%></td>
                         <td>
                             <div class="btn-group">

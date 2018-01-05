@@ -135,8 +135,8 @@
         </action>
     </package>
     <package name="message" namespace="/" extends="struts-default">
-        <action name="UpdateMessage" class="MessageAction" method="update">
-            <result name="success">/messageList.jsp</result>
+        <action name="UpdateMessage" class="MessageAction" method="updateMessage">
+            <result name="success" type="redirectAction">MessageList</result>
             <result name="error">/404.jsp</result>
         </action>
         <action name="ChangeMessage" class="MessageAction" method="change">

@@ -230,11 +230,11 @@
                       填写发布信息
                   </header>
                   <div class="panel-body">
-                      <form class="form-horizontal " action="MessageAdd" method="post">
+                      <form class="form-horizontal " action="UpdateMessage" method="post">
                           <!--date picker start-->
                           <input type="hidden" value="<%=message.getId()%>" name="message.id">
                           <input type="hidden" value="<%=message.getAuthorid()%>" name="message.authorid">
-                          <input type="hidden" value="<%=message.getGrade()%>" name="message.grade">
+                          <input type="hidden" value="<%=message.getGrade().split("-")[0]%>" name="message.grade">
                           <input type="hidden" value="<%=message.getTime()%>" name="message.time">
                           <div class="form-group">
                               <label class="control-label col-sm-4">标题</label>
@@ -258,7 +258,7 @@
                               <label class="control-label col-sm-4"></label>
                               <div class="col-sm-6">
                                   <div class="input-prepend">
-                                      <input type="submit" class="btn btn-success btn-block" value="发布消息">
+                                      <input type="submit" class="btn btn-success btn-block" value="修改消息">
                                   </div>
                               </div>
                           </div>

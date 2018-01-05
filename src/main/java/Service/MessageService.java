@@ -2,6 +2,7 @@ package Service;
 
 import DAO.BaseDAO;
 import DAO.BaseDAOImpl;
+import Model.Class;
 import Model.Message;
 import Model.Teacher;
 import com.opensymphony.xwork2.ActionContext;
@@ -47,8 +48,10 @@ public class MessageService extends BaseServiceImpl<Message> {
         return message;
     }
 
-    public boolean update(Message message){
-        if(update(message)){
+    public boolean updateMessage(Message message){
+        boolean isSuccess = false;
+        isSuccess = update(message);
+        if(isSuccess){
             return true;
         }else {
             return false;

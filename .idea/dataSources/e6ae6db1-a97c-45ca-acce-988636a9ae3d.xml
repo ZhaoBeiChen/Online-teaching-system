@@ -195,20 +195,21 @@
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="20" name="grade">
+    <column id="58" parent="20" name="classid">
       <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="20" name="grade">
+      <Position>6</Position>
       <DataType>year(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="20" name="time">
-      <Position>6</Position>
+    <column id="60" parent="20" name="time">
+      <Position>7</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-    </column>
-    <column id="60" parent="20" name="classid">
-      <Position>7</Position>
-      <DataType>int(11)|0</DataType>
     </column>
     <key id="61" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
