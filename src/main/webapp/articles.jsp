@@ -8,12 +8,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-    <meta name="author" content="GeeksLabs">
-    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>文章列表</title>
+    <title>文章列表 - 网上教学系统</title>
 
     <!-- javascripts -->
     <script src="js/jquery.js"></script>
@@ -44,7 +41,7 @@
   </head>
 
   <body>
-  <%
+ <%
       String username = (String)ActionContext.getContext().getSession().get("username");
       String usertype = (String)ActionContext.getContext().getSession().get("usertype");
       if(usertype==null){
@@ -71,13 +68,14 @@
                   <li>
                       <form class="navbar-form" action="Search" method="post">
                           <input name="keyword" class="form-control" placeholder="Search" type="text">
-                          <select name="condition"  class="btn btn-primary selectpicker">
+                          <select name="condition" class="btn btn-primary selectpicker">
                               <option value="all">全部</option>
                               <option value="article">文章</option>
                               <option value="courseware">课件</option>
                               <option value="course">课程相关</option>
                           </select>
-                          <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator" value="搜索"></input>
+                          <input type="submit" class="btn btn-success" href="" title="Bootstrap 3 themes generator"
+                                 value="搜索"></input>
                       </form>
                   </li>
               </ul>
@@ -119,12 +117,12 @@
           <div id="sidebar" class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">
-                <li class="active">
-                    <a class="" href="/Index">
-                        <i class="icon_house_alt"></i>
-                        <span>首页</span>
-                    </a>
-                </li>
+                  <li class="active">
+                      <a class="" href="/Index">
+                          <i class="icon_house_alt"></i>
+                          <span>首页</span>
+                      </a>
+                  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
@@ -134,10 +132,9 @@
                       <ul class="sub">
                           <li><a class="" href="/Articles">查看文章</a></li>
                           <%
-                              if(usertype!=null&&(usertype.equals("teacher")))
-                              {
+                              if (usertype != null && (usertype.equals("teacher"))) {
                           %>
-                              <li><a class="" href="/articlesadd.jsp">添加文章</a></li>
+                          <li><a class="" href="/articlesadd.jsp">添加文章</a></li>
                           <%
                               }
                           %>
@@ -152,37 +149,68 @@
                       <ul class="sub">
                           <li><a class="" href="/Coursewares">查看课件</a></li>
                           <%
-                              if(usertype!=null&&(usertype.equals("teacher")))
-                              {
+                              if (usertype != null && (usertype.equals("teacher"))) {
                           %>
-                              <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
+                          <li><a class="" href="coursewaresadd.jsp">添加课件</a></li>
                           <%
                               }
                           %>
                       </ul>
                   </li>
-                  <li>
-                      <a class="" href="/Courses">
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
                           <i class="icon_genius"></i>
                           <span>课程信息</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
+                      <ul class="sub">
+                          <li><a class="" href="/Courses">查看课程</a></li>
+                          <%
+                              if (usertype != null && (usertype.equals("admin"))) {
+                          %>
+                          <li><a class="" href="coursesadd.jsp">添加课程</a></li>
+                          <%
+                              }
+                          %>
+                      </ul>
                   </li>
-                  <li>
-                      <a class="" href="/Offered"><!--chart-chartjs.jsp-->
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
                           <i class="icon_piechart"></i>
                           <span>开课信息</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
+                      <ul class="sub">
+                          <li><a class="" href="/Offered">查看开课</a></li>
+                          <%
+                              if (usertype != null && (usertype.equals("admin"))) {
+                          %>
+                          <li><a class="" href="offeredadd.jsp">添加开课</a></li>
+                          <%
+                              }
+                          %>
+                      </ul>
                   </li>
-                  <li>
-                      <a class="" href="/Selected"><!--chart-chartjs.jsp-->
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
                           <i class="icon_table"></i>
                           <span>已选课程</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
-                  </li>
+                      <ul class="sub">
+                          <li><a class="" href="/Selected">查看已选</a></li>
                           <%
-                              if(usertype!=null&&(usertype.equals("teacher")))
-                              {
+                              if (usertype != null && (usertype.equals("admin"))) {
                           %>
+                          <li><a class="" href="selectedadd.jsp">添加已选</a></li>
+                          <%
+                              }
+                          %>
+                      </ul>
+                  </li>
+                  <%
+                      if (usertype != null && (usertype.equals("teacher"))) {
+                  %>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_table"></i>
@@ -190,27 +218,13 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="publishMessage.jsp">发布消息</a></li>
-                          <li><a class="" href="changeMessage.jsp">修改消息</a></li>
+                          <li><a class="" href="ClassListForMessage">发布消息</a></li>
+                          <li><a class="" href="MessageList">消息列表</a></li>
                       </ul>
                   </li>
                   <%
-                  }
+                      }
                   %>
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_documents_alt"></i>
-                          <span>Pages</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="profile.jsp">Profile</a></li>
-                          <li><a class="" href="login.jsp"><span>Login Page</span></a></li>
-                          <li><a class="" href="blank.jsp">Blank Page</a></li>
-                          <li><a class="" href="404.jsp">404 Error</a></li>
-                      </ul>
-                  </li>
-
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -301,18 +315,20 @@
                                   <h4 class="panel-title">
                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">
                                           <%=a.getId()%>   <%=a.getName()%>   ---   <%=a.getTeacher().getName()%>   ---   <%=a.getGrade().split("-")[0]%>   ---   <%=a.getTime()  %>
+                                                        <div class="btn-group navbar-right">
+                                                        <a class="btn btn-success " data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">查看</i></a>
                                                         <%
-
                                                         if(usertype.equals("admin")||(usertype.equals("teacher")&&a.getTeacher().getName().equals(username))){
                                                         %>
-                                                        <a class="btn btn-danger navbar-right" href="/ArticlesDelete?id=<%=a.getId()%>">删除</i></a>
+                                                        <a class="btn btn-danger" href="/ArticlesDelete?id=<%=a.getId()%>">删除</i></a>
                                                         <%
                                                         }
                                                         %>
+                                                        </div>
                                       </a>
                                   </h4>
                               </div>
-                              <div id="collapse<%=i%>" class="panel-collapse collapse in">
+                              <div id="collapse<%=i%>" class="panel-collapse collapse">
                                   <div class="panel-body">
                                         <pre><%=a.getContent()%></pre>
                                   </div>
