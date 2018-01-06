@@ -1,5 +1,7 @@
 package View;
 
+import Model.Teacher;
+
 import java.sql.Timestamp;
 
 public class MessageView {
@@ -7,6 +9,7 @@ public class MessageView {
     private int id;
     private String name;
     private String content;
+    private Teacher author;
     private int classid;
     private String className;
     private Timestamp timestamp;
@@ -33,6 +36,14 @@ public class MessageView {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Teacher getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Teacher author) {
+        this.author = author;
     }
 
     public int getClassid() {

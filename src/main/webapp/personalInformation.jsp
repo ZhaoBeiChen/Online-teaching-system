@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="com.opensymphony.xwork2.ActionContext"%>
+<%@page import="Model.Class"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +42,7 @@
 <%
       String username = (String)ActionContext.getContext().getSession().get("username");
       String usertype = (String)ActionContext.getContext().getSession().get("usertype");
+      String useremail = (String)ActionContext.getContext().getSession().get("useremail");
       if(usertype==null){
         response.getWriter().print("<script>alert('请先登录!');window.location.href='/login.jsp'</script>");
         return;
@@ -251,23 +253,28 @@
                         <div class="panel-body">
                             <form class="form-horizontal " method="get">
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">电子邮箱：</label>
-                                    <div class="col-lg-10">
-                                        <p class="form-control-static">email@example.com</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-lg-2 control-label">用户名：</label>
                                     <div class="col-lg-10">
                                         <p class="form-control-static"><%=username%></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">班级：</label>
+                                    <label class="col-lg-2 control-label">电子邮箱：</label>
                                     <div class="col-lg-10">
-                                        <p class="form-control-static">email@example.com</p>
+                                        <p class="form-control-static"><%=useremail%></p>
                                     </div>
                                 </div>
+                                <%if(usertype.equals("student")){
+                                Class class0 = (Class) ActionContext.getContext().getSession().get("userclass");
+                                %>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">班级：</label>
+                                    <div class="col-lg-10">
+                                        <p class="form-control-static"><%=class0.getName()%></p>
+                                    </div>
+                                </div>
+                                <%}
+                                %>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">用户类型：</label>
                                     <div class="col-lg-10">
@@ -279,11 +286,11 @@
                             </form>
                         </div>
                     </section>
-                    <section class="panel">
+                    <!--<section class="panel">
                         <div class="panel-body">
                             <button type="button" disabled="true" class="btn btn-success btn-block">修改资料</button>
                         </div>
-                    </section>
+                    </section>-->
                 </div>
             </div>
             <!-- page end-->

@@ -22,6 +22,7 @@ public class TeacherService extends BaseServiceImpl<Teacher> {
             context.getSession().put("user",teacher);
             context.getSession().put("username",username);
             context.getSession().put("usertype","teacher");
+            context.getSession().put("useremail",teacher.getEmail());
             return true;
         }
         else{

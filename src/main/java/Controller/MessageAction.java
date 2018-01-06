@@ -2,8 +2,10 @@ package Controller;
 
 import Model.Class;
 import Model.Message;
+import Model.Teacher;
 import Service.ClassService;
 import Service.MessageService;
+import Service.TeacherService;
 import View.MessageView;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,11 +19,13 @@ public class MessageAction extends ActionSupport {
     private Message message;
     private MessageService messageService;
     private ClassService classService;
+    private TeacherService teacherService;
     private List<MessageView> messageViewList;
 
     public String show(){
         messageService.init();
         classService.init();
+        teacherService.init();
         messageViewList = new ArrayList<MessageView>();
         List<Message> messageList = messageService.getList();
         List<Class> classList = classService.getList();
@@ -30,6 +34,7 @@ public class MessageAction extends ActionSupport {
             messageView.setId(temp.getId());
             messageView.setName(temp.getName());
             messageView.setContent(temp.getContent());
+            messageView.setAuthor(teacherService.getById(Teacher.class,temp.getAuthorid()));
             messageView.setClassid(temp.getClassid());
             messageView.setClassName(classList.get(temp.getClassid()).getName());
             messageView.setTimestamp(temp.getTime());
@@ -61,7 +66,14 @@ public class MessageAction extends ActionSupport {
         messageService.clear();
         return SUCCESS;
     }
-
+    public String delete(){
+        messageService.init();
+        int id = Integer.parseInt(ServletActionContext.getRequest().getParameter("messageId"));
+        Message message = messageService.get(id);
+        messageService.delete(message);
+        messageService.clear();
+        return SUCCESS;
+    }
     public String updateMessage(){
         messageService.init();
         boolean isSuccess = false;
@@ -73,8 +85,10 @@ public class MessageAction extends ActionSupport {
             return ERROR;
         }
     }
-
-
+    public String JSONMessages(){
+        show();
+        return "success";
+    }
 
     public Message getMessage() {
         return message;
@@ -84,19 +98,23 @@ public class MessageAction extends ActionSupport {
         this.message = message;
     }
 
-    public MessageService getMessageService() {
-        return messageService;
-    }
-
     public void setMessageService(MessageService messageService) {
         this.messageService = messageService;
     }
 
-    public ClassService getClassService() {
-        return classService;
-    }
-
     public void setClassService(ClassService classService) {
         this.classService = classService;
+    }
+
+    public void setTeacherService(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
+
+    public List<MessageView> getMessageViewList() {
+        return messageViewList;
+    }
+
+    public void setMessageViewList(List<MessageView> messageViewList) {
+        this.messageViewList = messageViewList;
     }
 }

@@ -14,6 +14,14 @@
 
     <title>发布消息 - 网上教学系统</title>
 
+    <!-- javascripts -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- nice scroll -->
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
+    <script src="js/scripts.js"></script>
+
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
@@ -262,26 +270,20 @@
                             </div>
                         </div>
 
-                        <%
-                            List<Class> classList = (List<Class>) ActionContext.getContext().getSession().get("classList");
-                        %>
-
+                        <script>
+                            $(document).ready(function(){
+                                $.get("/JSONClasses?type=select",function(data,status){
+                                for(var key in data.classes){
+                                    $("#classid").append("<option value='"+data.classes[key].id+"'>"+data.classes[key].name+"</option>");
+                                }
+                                });
+                            });
+                          </script>
                         <div class="form-group">
                             <label class="control-label col-sm-4">班级</label>
                             <div class="col-sm-6">
                                 <div class="input-prepend">
-                                    <select class="form-control m-bot15" name="message.classid">
-
-                                        <%
-                                        for (Class temp : classList) {
-                                        %>
-
-                                        <option value="<%=temp.getId()%>"><%=temp.getName()%></option>
-
-                                        <%
-                                            }
-                                        %>
-
+                                    <select class="form-control m-bot15" id="classid" name="message.classid">
                                     </select>
                                 </div>
                             </div>
@@ -309,14 +311,6 @@
     <!--main content end-->
 </section>
 <!-- container section end -->
-<!-- javascripts -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- nice scroll -->
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
-<script src="js/scripts.js"></script>
-
 
 </body>
 </html>

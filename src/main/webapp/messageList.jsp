@@ -267,7 +267,7 @@
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-primary" href="ChangeMessage?messageId=<%=temp.getId()%>"><i class="icon_plus_alt2">修改</i></a>
-                                <a class="btn btn-danger" href="#"><i class="icon_close_alt2">删除</i></a>
+                                <a class="btn btn-danger" href="DeleteMessage?messageId=<%=temp.getId()%>"><i class="icon_close_alt2">删除</i></a>
                             </div>
                         </td>
                     </tr>

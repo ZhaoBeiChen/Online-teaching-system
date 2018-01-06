@@ -11,6 +11,95 @@
 
     <title>首页 - 网上教学系统</title>
 
+<!-- javascripts -->
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui-1.10.4.min.js"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<!-- bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- nice scroll -->
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+<!-- charts scripts -->
+<script src="assets/jquery-knob/js/jquery.knob.js"></script>
+<script src="js/jquery.sparkline.js" type="text/javascript"></script>
+<script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script src="js/owl.carousel.js"></script>
+<!-- jQuery full calendar -->
+<
+<script src="js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+<script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+<!--script for this page only-->
+<script src="js/calendar-custom.js"></script>
+<script src="js/jquery.rateit.min.js"></script>
+<!-- custom select -->
+<script src="js/jquery.customSelect.min.js"></script>
+<script src="assets/chart-master/Chart.js"></script>
+
+<!--custome script for all page-->
+<script src="js/scripts.js"></script>
+<!-- custom script for this page-->
+<script src="js/sparkline-chart.js"></script>
+<script src="js/easy-pie-chart.js"></script>
+<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="js/jquery-jvectormap-world-mill-en.js"></script>
+<script src="js/xcharts.min.js"></script>
+<script src="js/jquery.autosize.min.js"></script>
+<script src="js/jquery.placeholder.min.js"></script>
+<script src="js/gdp-data.js"></script>
+<script src="js/morris.min.js"></script>
+<script src="js/sparklines.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
+<script>
+
+    //knob
+    $(function () {
+        $(".knob").knob({
+            'draw': function () {
+                $(this.i).val(this.cv + '%')
+            }
+        })
+    });
+
+    //carousel
+    $(document).ready(function () {
+        $("#owl-slider").owlCarousel({
+            navigation: true,
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            singleItem: true
+
+        });
+    });
+
+    //custom select box
+
+    $(function () {
+        $('select.styled').customSelect();
+    });
+
+    /* ---------- Map ---------- */
+    $(function () {
+        $('#map').vectorMap({
+            map: 'world_mill_en',
+            series: {
+                regions: [{
+                    values: gdpData,
+                    scale: ['#000', '#000'],
+                    normalizeFunction: 'polynomial'
+                }]
+            },
+            backgroundColor: '#eef3f7',
+            onLabelShow: function (e, el, code) {
+                el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+            }
+        });
+    });
+
+
+</script>
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
@@ -18,7 +107,7 @@
     <!--external css-->
     <!-- font icon -->
     <link href="css/elegant-icons-style.css" rel="stylesheet"/>
-    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet"/>
     <!-- full calendar css-->
     <link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet"/>
     <link href="assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet"/>
@@ -248,36 +337,55 @@
                     </ol>
                 </div>
             </div>
-
+                          <script>
+                            $(document).ready(function(){
+                                $.get("/JSONCounts",function(data,status){
+                                $("#userCount").html(data.countView.userCount);
+                                $("#offeredCount").html(data.countView.offeredCount);
+                                $("#articleCount").html(data.countView.articleCount);
+                                $("#coursewareCount").html(data.countView.coursewareCount);
+                                });
+                                $.get("/JSONMessages",function(data,status){
+                                var length=0;
+                                for(var key in data.messageViewList){
+                                   length++;
+                                }
+                                for(var i = 0 ; i < length ; i++){
+                                    $("#msg"+(i+1)+"-title").text(data.messageViewList[i].name+" - "+data.messageViewList[i].author.name);
+                                    $("#msg"+(i+1)+"-content").text(data.messageViewList[i].content);
+                                    }
+                                });
+                            });
+                          </script>
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="info-box blue-bg">
-                        <i class="fa fa-cloud-download"></i>
-                        <div class="count">6.674</div>
-                        <div class="title">总下载量</div>
+                        <i class="fa fa-users"></i>
+                        <div class="count" id="userCount">6</div>
+                        <div class="title">用户数</div>
                     </div><!--/.info-box-->
                 </div><!--/.col-->
 
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="info-box brown-bg">
-                        <i class="fa fa-shopping-cart"></i>
-                        <div class="count">7.538</div>
-                        <div class="title">总上传量</div>
+                        <i class="fa fa-book"></i>
+                        <div class="count" id="offeredCount">7</div>
+                        <div class="title">开设课程</div>
                     </div><!--/.info-box-->
                 </div><!--/.col-->
 
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="info-box dark-bg">
-                        <i class="fa fa-thumbs-o-up"></i>
-                        <div class="count">4.362</div>
+                        <i class="fa fa-paperclip"></i>
+                        <div class="count" id="articleCount">4</div>
                         <div class="title">文章数</div>
                     </div><!--/.info-box-->
                 </div><!--/.col-->
 
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="info-box green-bg">
-                        <i class="fa fa-cubes"></i>
-                        <div class="count">1.426</div>
+                        <i class="fa fa-cloud-download"></i>
+                        <div class="count" id="coursewareCount">1</div>
                         <div class="title">课件数</div>
                     </div><!--/.info-box-->
                 </div><!--/.col-->
@@ -289,45 +397,39 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            <a class="accordion-toggle" id="msg1-title" data-toggle="collapse" data-parent="#accordion"
                                href="#collapseOne">
-                                XX老师关于XX课程的公告 发布于XXXX年XX月XX日 XX时XX分
                             </a>
                         </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            原定于星期二下午的体育课因体育老师打麻将输给了数学老师，改上数学课，数学老师决定即兴进行周测，请大家做好准备。
+                        <div class="panel-body" id="msg1-content">
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            <a class="accordion-toggle" id="msg2-title" data-toggle="collapse" data-parent="#accordion"
                                href="#collapseTwo">
-                                XX老师关于XX课程的公告 发布于XXXX年XX月XX日 XX时XX分
                             </a>
                         </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            原定于星期二下午的体育课因体育老师打牌输给了英语老师，改上英语课，英语老师决定发两套题，请大家做好准备。
+                        <div class="panel-body" id="msg2-content">
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            <a class="accordion-toggle" id="msg3-title" data-toggle="collapse" data-parent="#accordion"
                                href="#collapseThree">
-                                XX老师关于XX课程的公告 发布于XXXX年XX月XX日 XX时XX分
                             </a>
                         </h4>
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            原定于星期二下午的体育课因体育老师打游戏输给了物理老师，改上物理课，物理老师要检查练习册完成情况，请大家做好准备。
+                        <div class="panel-body" id="msg3-content">
                         </div>
                     </div>
                 </div>
@@ -422,96 +524,6 @@
     <!--main content end-->
 </section>
 <!-- container section start -->
-
-<!-- javascripts -->
-<script src="js/jquery.js"></script>
-<script src="js/jquery-ui-1.10.4.min.js"></script>
-<script src="js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
-<!-- bootstrap -->
-<script src="js/bootstrap.min.js"></script>
-<!-- nice scroll -->
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-<!-- charts scripts -->
-<script src="assets/jquery-knob/js/jquery.knob.js"></script>
-<script src="js/jquery.sparkline.js" type="text/javascript"></script>
-<script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
-<script src="js/owl.carousel.js"></script>
-<!-- jQuery full calendar -->
-<
-<script src="js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
-<script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
-<!--script for this page only-->
-<script src="js/calendar-custom.js"></script>
-<script src="js/jquery.rateit.min.js"></script>
-<!-- custom select -->
-<script src="js/jquery.customSelect.min.js"></script>
-<script src="assets/chart-master/Chart.js"></script>
-
-<!--custome script for all page-->
-<script src="js/scripts.js"></script>
-<!-- custom script for this page-->
-<script src="js/sparkline-chart.js"></script>
-<script src="js/easy-pie-chart.js"></script>
-<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="js/jquery-jvectormap-world-mill-en.js"></script>
-<script src="js/xcharts.min.js"></script>
-<script src="js/jquery.autosize.min.js"></script>
-<script src="js/jquery.placeholder.min.js"></script>
-<script src="js/gdp-data.js"></script>
-<script src="js/morris.min.js"></script>
-<script src="js/sparklines.js"></script>
-<script src="js/charts.js"></script>
-<script src="js/jquery.slimscroll.min.js"></script>
-<script>
-
-    //knob
-    $(function () {
-        $(".knob").knob({
-            'draw': function () {
-                $(this.i).val(this.cv + '%')
-            }
-        })
-    });
-
-    //carousel
-    $(document).ready(function () {
-        $("#owl-slider").owlCarousel({
-            navigation: true,
-            slideSpeed: 300,
-            paginationSpeed: 400,
-            singleItem: true
-
-        });
-    });
-
-    //custom select box
-
-    $(function () {
-        $('select.styled').customSelect();
-    });
-
-    /* ---------- Map ---------- */
-    $(function () {
-        $('#map').vectorMap({
-            map: 'world_mill_en',
-            series: {
-                regions: [{
-                    values: gdpData,
-                    scale: ['#000', '#000'],
-                    normalizeFunction: 'polynomial'
-                }]
-            },
-            backgroundColor: '#eef3f7',
-            onLabelShow: function (e, el, code) {
-                el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-            }
-        });
-    });
-
-
-</script>
 
 </body>
 </html>

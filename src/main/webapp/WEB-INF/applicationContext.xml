@@ -21,6 +21,10 @@
             <bean class="Service.StudentService"/>
         </property>
 
+        <property name="classService">
+            <bean class="Service.ClassService"/>
+        </property>
+
         <property name="articleService">
             <bean class="Service.ArticleService"/>
         </property>
@@ -95,6 +99,9 @@
         </property>
         <property name="classService">
             <bean class="Service.ClassService" />
+        </property>
+        <property name="teacherService">
+            <bean class="Service.TeacherService" />
         </property>
         <property name="message">
             <bean class="Model.Message" />

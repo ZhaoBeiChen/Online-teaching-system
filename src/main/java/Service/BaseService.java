@@ -11,6 +11,7 @@ public interface BaseService<T>
     boolean update(T t);
     boolean delete(T t);
     boolean execute(String sql);
+    int count(String table);
     Object get(Class type, Serializable id);
     T getById(Class<T> cls,Serializable id);
     Object load(Class type, Serializable id);

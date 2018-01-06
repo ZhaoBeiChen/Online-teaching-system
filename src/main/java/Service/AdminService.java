@@ -17,6 +17,7 @@ public class AdminService extends BaseServiceImpl<Admin> {
             context.getSession().put("user",admin);
             context.getSession().put("username",username);
             context.getSession().put("usertype","admin");
+            context.getSession().put("useremail",admin.getEmail());
             return true;
         }
         else{

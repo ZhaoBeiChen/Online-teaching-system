@@ -75,7 +75,11 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
             return false;
         }
     }
-
+    @Override
+    public int count(String table){
+        Long count = (Long) HU.getSession().createQuery("select count(*) from "+table).uniqueResult();
+        return count.intValue();
+    }
     @Override
     public Object get(Class type, Serializable id)
     {

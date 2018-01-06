@@ -51,6 +51,10 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>
     public boolean execute(String sql){
         return dao.execute(sql);
     }
+    @Override
+    public int count(String table){
+        return dao.count(table);
+    }
 
     public Object get(Class type, Serializable id)
     {

@@ -46,8 +46,8 @@
                 <input type="password" class="form-control" name="password" placeholder="密码">
             </div>
             <label class="checkbox">
-                <input type="checkbox" value="remember-me"> 记住我
-                <span class="pull-right"> <a href="#"> 忘记密码?</a></span>
+                <!--<input type="checkbox" value="remember-me"> 记住我-->
+                <span class="pull-right"> <a href="forget.jsp"> 忘记密码?</a></span>
             </label>
             <button class="btn btn-primary btn-lg btn-block" type="submit">登录</button>
         </div>

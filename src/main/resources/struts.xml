@@ -33,6 +33,10 @@
             <result name="success">/searchResult.jsp</result>
             <result name="fail">/404.jsp</result>
         </action>
+        <action name="FindPassword" class="CommonAction" method="FindPassword">
+            <result name="success">/forget.jsp?msg=${msg}</result>
+            <result name="fail">/404.jsp</result>
+        </action>
     </package>
     <package name="course" namespace="/" extends="struts-default">
         <action name="Courses" class="CourseAction" method="Show">
@@ -49,6 +53,10 @@
         </action>
     </package>
     <package name="jsons" namespace="/" extends="json-default">
+        <action name="JSONCounts" class="CommonAction" method="Count">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
         <action name="JSONCourses" class="CourseAction" method="JSONCourses">
             <result name="success" type="json"></result>
             <result name="fail">/404.jsp</result>
@@ -62,6 +70,10 @@
             <result name="fail">/404.jsp</result>
         </action>
         <action name="JSONTeachers" class="TeacherAction" method="JSONTeachers">
+            <result name="success" type="json"></result>
+            <result name="fail">/404.jsp</result>
+        </action>
+        <action name="JSONMessages" class="MessageAction" method="JSONMessages">
             <result name="success" type="json"></result>
             <result name="fail">/404.jsp</result>
         </action>
@@ -141,6 +153,10 @@
         </action>
         <action name="ChangeMessage" class="MessageAction" method="change">
             <result name="success">/messageChange.jsp</result>
+            <result name="error">/404.jsp</result>
+        </action>
+        <action name="DeleteMessage" class="MessageAction" method="delete">
+            <result name="success" type="redirectAction">MessageList</result>
             <result name="error">/404.jsp</result>
         </action>
         <action name="MessageList" class="MessageAction" method="show">

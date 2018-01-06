@@ -18,6 +18,7 @@ public class StudentService extends BaseServiceImpl<Student> {
             context.getSession().put("user",student);
             context.getSession().put("username",username);
             context.getSession().put("usertype","student");
+            context.getSession().put("useremail",student.getEmail());
             return true;
         }
         else{

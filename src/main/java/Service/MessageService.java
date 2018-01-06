@@ -4,6 +4,7 @@ import DAO.BaseDAO;
 import DAO.BaseDAOImpl;
 import Model.Class;
 import Model.Message;
+import Model.Student;
 import Model.Teacher;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -21,10 +22,26 @@ public class MessageService extends BaseServiceImpl<Message> {
     }
 
     public List<Message> getList(){
-        Teacher teacher = (Teacher) ActionContext.getContext().getSession().get("user");
-        String id = Integer.toString(teacher.getId());
-        List<Message> messageList = getBySQL("from Message where authorid = " + id + " order by time desc");
-        return messageList;
+        String usertype = (String) ActionContext.getContext().getSession().get("usertype");
+        if(usertype==null){
+            return new ArrayList<Message>();
+        }
+        if(usertype.equals("teacher")) {
+            Teacher teacher = (Teacher) ActionContext.getContext().getSession().get("user");
+            List<Message> messageList = getBySQL("from Message where authorid = " + teacher.getId() + " order by time desc");
+            return messageList;
+        }
+        else {
+            if(usertype.equals("student")){
+                Student student = (Student) ActionContext.getContext().getSession().get("user");
+                List<Message> messageList = getBySQL("from Message where classid = " + student.getClassid() + " order by time desc");
+                return messageList;
+            }
+            else{
+                List<Message> messageList = getBySQL("from Message order by time desc");
+                return messageList;
+            }
+        }
     }
 
     public boolean setAdd(Message message){
