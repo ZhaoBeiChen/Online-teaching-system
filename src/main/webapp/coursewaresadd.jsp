@@ -252,17 +252,17 @@
                           <div class="panel-body">
                                  <script>
                                    $(document).ready(function(){
-                                       $.get("/JSONCourses",function(data,status){
+                                       $.get("/JSONOffereds",function(data,status){
                                 var length=0;
-                                for(var key in data.courseNames){
+                                for(var key in data.offeredNames){
                                    length++;
                                 }
                                 if(length==0){
                                     alert("暂时没有您的开课信息，无法添加课件！");
                                     window.location.href="/Coursewares";
                                     }
-                                       for(var course in data.courseNames){
-                                           $("#courseid").append("<option value='"+data.courseNames[course].id+"'>"+data.courseNames[course].name+"</option>");
+                                       for(var course in data.offeredNames){
+                                           $("#courseid").append("<option value='"+data.offeredNames[course].courseid+"'>"+data.offeredNames[course].courseName+"</option>");
                                        }
                                        });
                                    });
